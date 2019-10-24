@@ -1,0 +1,68 @@
+<div id="addHeader">
+</div>
+<section id="banner">
+    <div id="searchForm">
+
+        <form method="POST" action="/">
+            <legend>Book unique places to stay and things to do.</legend>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">WHERE</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="location">
+                    <option value="" disabled selected>Anywhere</option>
+                    <option>Kalgari</option>
+                    <option>Montreal</option>
+                    <option>Ottawa</option>
+                    <option>Toronto</option>
+                    <option>Vancouver</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>CHECK-IN</label>
+                    <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
+                    <small class="text-danger" >{{checkinError}}</small> 
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label>CHECK-OUT</label>
+                    <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
+                    <small class="text-danger" >{{checkoutError}}</small>
+                </div>
+                <small class="text-danger" >{{datesError}}</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">GUESTS</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <button class="btn-lg btn-primary float-right" id="searchBut" type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<section id="promotionSection">
+    <div>
+        <h1>Some Promotion</h1>
+    </div>
+</section>
+
+<section id="aboutSection">
+    <h2>What is Airbnb and how does it work?</h2>
+    <div id="aboutBlock">
+        <div>
+            <img src="img/about.jpeg" alt="">
+        </div>
+        <div id="aboutText">
+            <h4>A community built on sharing</h4>
+            <p>Airbnb began in 2008 when two designers who had space to share hosted three travellers looking for a place to stay. Now, millions of hosts and travellers choose to create a free Airbnb account so they can list their space and book unique accommodations anywhere in the world. And Airbnb experience hosts share their passions and interests with both travellers and locals.</p>
+            <h4>Trusted services</h4>
+            <p>Airbnb helps make sharing easy, enjoyable, and safe. We verify personal profiles and listings, maintain a smart messaging system so hosts and guests can communicate with certainty, and manage a trusted platform to collect and transfer payments.</p>
+
+            <p>Your safety is our number one concern. Learn more in our Trust and Safety Centre.</p>
+        </div>
+    </div>
+</section>

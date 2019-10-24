@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <title>{{ title }}</title>
+</head>
+<body class="{{bodyOpen}}">
+    <header>
+        <div class="headerBlock">
+            <a href="/"><i class="fab fa-airbnb fa-3x" id="mainLogo"></i></a>
+            <nav class="navbar navbar-expand-lg navbar-light my-2 my-lg-0">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fab fa-airbnb fa-2x"><span id="arrowDown">&#9662;</span></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" class="top-link" id="home-link" href="/">Home</a>
+                        <a class="nav-item nav-link active" id="top-link" href="/listings">Room Listings</a>
+                        <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign Up</a>
+                        <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign In</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="modal fade {{ signUpShowValue }}" id="popUpSignUp" style="display:{{signUpblockValue}}" aria-hidden="{{signUpariaValue}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- header -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">Sign Up</h3>
+                        <button type="button" class="close" data-dismiss="modal" id="signUpClose">&times;</button>
+                    </div>
+                    <!-- body -->
+                    <div class="modal-body">
+                        <form role="form" id="signUpForm" >
+                            <div class="form-group" >
+                            <small id="emailError" class="formError">{{ emailError }}</small>
+                            <input type="email" class="form-control" name="email" placeholder="Email address" id="signUpEmail"/>
+                            <small id="fnameError" class="formError">{{ fnameError }}</small>
+                            <input type="text" class="form-control" placeholder="First name" name="fname" id="fname" >
+                            <small id="lnameError" class="formError">{{ lnameError }}</small>
+                            <input type="text" class="form-control" placeholder="Last name" name="lname" id="lname">
+                            <small id="passError" class="formError">{{ passError }}</small>
+                            <input type="password" class="form-control" placeholder="Create a password" name="signUpPass" id="signUpPass" />
+                            
+                            </div>
+                            <div class="modal-body">
+                                <p>Birthday</p>
+                                <small>To sign up, you need to be at least 18. Other people who use Airbnb won’t see your birthday.</small>
+                            </div>
+                            <small id="dateError" class="formError">{{ dateError }}</small>
+                            <div class="form-inline">
+                                <select class="form-control" id="monthField" name="monthField">
+                                    <option value="" disabled selected>Month</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+                                <select class="form-control" id="dayField" name="dayField">
+                                    <option value="" disabled selected>Day</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <select class="form-control" id="yearField" name="yearField">
+                                    <option value="" disabled selected>Year</option>
+                                    <option>2007</option>
+                                    <option>2006</option>
+                                    <option>2005</option>
+                                    <option>2004</option>
+                                    <option>2003</option>
+                                    <option>2002</option>
+                                    <option>2001</option>
+                                    <option>2000</option>
+                                    <option>1999</option>
+                                    <option>1998</option>
+                                    <option>1997</option>
+                                    <option>1996</option>
+                                    <option>1995</option>
+                                </select>
+                            </div>
+                            <div class="modal-body">
+                                <small>We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</small>
+                            </div>
+                            <div class="modal-footer">
+                        {{!-- <button class="btn btn-primary btn-block" id="SignUpBut">Sign Up</button> --}}
+                        <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign Up"><br><br>
+                    </div>
+                    <label class="checkbox-inline"><input type="checkbox" value="">  I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.</label>
+                        </form>
+                    </div>
+                    <!-- footer -->
+                    
+                </div>
+            </div>
+        </div>
+
+
+        {{!-- login form --}}
+        <div class="modal fade {{ signInShowValue }}" id="popUpSignIn" style="display:{{signInblockValue}}" aria-hidden="{{signInariaValue}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- header -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">Sign In</h3>
+                        <button type="button" class="close" data-dismiss="modal" id="signInClose">&times;</button>
+                    </div>
+                    <!-- body -->
+                    <div class="modal-body">
+                        <form role="form" method="POST" action="/signIn">
+                            <div class="form-group" >
+                            <small id="emailError" class="formError">{{ emailError }}</small>
+                            <input type="email" class="form-control" placeholder="Email address" name="email"/>
+                            <small id="passError" class="formError">{{ passError }}</small>
+                            <input type="password" class="form-control" placeholder="Your password" name="signInPass"/>
+                            <div class="modal-footer">
+                            <button class="btn btn-primary btn-block">Sign In</button>
+                            {{!-- <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign In"> --}}
+                            </div>
+                        </form>
+                    </div>
+                    <!-- footer -->
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+
+        {{!-- Confirmation pop-up window --}}
+        <div class="modal fade {{ confShowValue }}" id="popUpConf" style="display:{{confblockValue}}" aria-hidden="{{confariaValue}}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- header -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">Welcome!</h3>
+                        <button type="button" class="close" data-dismiss="modal" id="confClose">&times;</button>
+                    </div>
+                    <!-- body -->
+                    <div class="modal-body">
+                        <p>Thank you! The confirmation has been sent to your email address.</p>
+                    </div>
+                    <!-- footer -->
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+    {{{ body }}}
+
+
+    <footer>
+    <div>
+        <a href=""><i class="fab fa-facebook-f fa-2x"></i></a>
+        <a href=""><i class="fab fa-instagram fa-2x"></i></a>
+        <a href=""><i class="fab fa-twitter fa-2x"></i></a>
+    </div>
+    <div>
+        <nav class="navbar-text">
+            <a href="/listings">Room Listings</a>
+            <a href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign Up</a>
+            <a href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign In</a>
+        </nav>
+    </div>
+    </footer>
+
+
+    <div class="{{fadeValue}}"></div>
+
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
