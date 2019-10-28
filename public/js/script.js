@@ -82,64 +82,22 @@ signUpBut.addEventListener("click", ()=>{
 
 
 
-let signUpCloseBut = document.querySelector("#signUpClose")
-let signInCloseBut = document.querySelector("#signInClose")
-let confCloseBut = document.querySelector("#confClose")
-
-signUpCloseBut.addEventListener('click', ()=>{
-    let pagePath = ""
-    let pageName = window.location.href.substr(window.location.href.lastIndexOf("/")+1)
-    if (pageName == "signIn" || pageName == "signUp")
-        pagePath = document.referrer.substr(document.referrer.lastIndexOf("/")+1)
-    else
-        pagePath = pageName
-
-    let page = ""
-    if (pagePath == "listings")
-        page = "/listings"
-    else
-        page = "/"
-
-    location.replace(page)
-})
-
-signInCloseBut.addEventListener('click', ()=>{
-    let pagePath = ""
-    let pageName = window.location.href.substr(window.location.href.lastIndexOf("/")+1)
-    if (pageName == "signIn" || pageName == "signUp")
-        pagePath = document.referrer.substr(document.referrer.lastIndexOf("/")+1)
-    else
-        pagePath = pageName
-
-
-    let page = ""
-    if (pagePath == "listings")
-        page = "/listings"
-    else
-        page = "/"
-
-    location.replace(page)
-})
-
-confCloseBut.addEventListener('click', ()=>{
-    let pagePath = ""
-    let pageName = window.location.href.substr(window.location.href.lastIndexOf("/")+1)
-    if (pageName == "signIn" || pageName == "signUp")
-        pagePath = document.referrer.substr(document.referrer.lastIndexOf("/")+1)
-    else
-        pagePath = pageName
-
-    let page = ""
-    if (pagePath == "listings")
-        page = "/listings"
-    else
-        page = "/"
-
-    location.replace(page)
-})
-
-
-
-// document.getElementsByClassName("close").addEventListener('click', ()=>{
-//     location.replace("/")
-// })
+let buttons = document.querySelectorAll(".close")
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', ()=>{
+        let pagePath = ""
+        let pageName = window.location.href.substr(window.location.href.lastIndexOf("/")+1)
+        if (pageName == "signIn" || pageName == "signUp")
+            pagePath = document.referrer.substr(document.referrer.lastIndexOf("/")+1)
+        else
+            pagePath = pageName
+    
+        let page = ""
+        if (pagePath == "listings")
+            page = "/listings"
+        else
+            page = "/"
+    
+        location.replace(page)
+    })
+}
