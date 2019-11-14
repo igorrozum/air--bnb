@@ -29,6 +29,7 @@
         </div>
 
 
+        {{!-- Registration Form --}}
         <div class="modal fade {{ signUpShowValue }}" id="popUpSignUp" style="display:{{signUpblockValue}}" aria-hidden="{{signUpariaValue}}">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -49,6 +50,8 @@
                             <input type="text" class="form-control" placeholder="Last name" name="lname" id="lname">
                             <small id="passError" class="formError">{{ passError }}</small>
                             <input type="password" class="form-control" placeholder="Create a password" name="signUpPass" id="signUpPass" />
+                            <small id="passError" class="formError">{{ passConfirmError }}</small>
+                            <input type="password" class="form-control" placeholder="Confirm your password" name="signUpPassConfirm" id="signUpPass" />
                             
                             </div>
                             <div class="modal-body">
