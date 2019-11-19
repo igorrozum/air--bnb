@@ -51,7 +51,7 @@ router.post('/', (req, res)=>{
         lname.error = "Please enter correct last name";
         valid = false;
     }
-
+ 
     let pass = {
         input : req.body.signUpPass,
         confPass: req.body.signUpPassConfirm,
