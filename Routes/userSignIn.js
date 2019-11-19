@@ -1,7 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User') // For importing Database code
+// const session = require('express-session')
+const bcrypt = require('bcryptjs')
 
+
+
+router.get('/', (req, res)=>{
+    res.redirect('/listings')
+})
 
 router.post('/', (req, res)=>{
     let valid = true;
@@ -27,16 +34,19 @@ router.post('/', (req, res)=>{
         valid = false;
     }
 
+    const pagePath = req.header('referer').substr(req.header('referer').lastIndexOf("/")+1)
+    let page, route = ""
+    if (pagePath == "listings") {
+        page = "listings"
+        route = "/listings"
+    } else {
+        page = "index"
+        route = "/"
+    }
+
 
     if(!valid)
     {
-        
-        const pagePath = req.header('referer').substr(req.header('referer').lastIndexOf("/")+1)
-        let page = ""
-        if (pagePath == "listings")
-            page = "listings"
-        else
-            page = "index"
         res.render(page, {
             emailError: email.error,
             passError: pass.error,
@@ -47,10 +57,55 @@ router.post('/', (req, res)=>{
             signInariaValue: "true"
         })
     } else {
-        res.redirect("/");
+        User.findOne({ email: email.input })
+        .then(user => {
+            if (user) {
+                bcrypt.compare(pass.input, user.password)
+                .then(isMatched => {
+                    if (isMatched) {
+                        // Create session
+                        req.session.userInfo = user
+                        res.redirect('/dashboard')
+                    } else {
+                        res.render(page, {
+                            passError: "Your password doesn't match",
+                            signInShowValue: "show",
+                            signInblockValue: "block",
+                            bodyOpen: "modal-open",
+                            fadeValue: "modal-backdrop fade show",
+                            signInariaValue: "true"
+                        })
+                        
+                    }
+                })
+                .catch(err => console.log(`Something went wrong: ${err}`))
+            } else {
+                res.render(page, {
+                    emailError: "Your email wasn't found",
+                    signInShowValue: "show",
+                    signInblockValue: "block",
+                    bodyOpen: "modal-open",
+                    fadeValue: "modal-backdrop fade show",
+                    signInariaValue: "true"
+                })
+            }
+        })
 
     }    
 })
 
+
+router.get('/logout', (req, res)=>{
+    const pagePath = req.header('referer').substr(req.header('referer').lastIndexOf("/")+1)
+    let route = ""
+    if (pagePath == "listings") {
+        route = "/listings"
+    } else {
+        route = "/"
+    }
+
+    req.session.destroy()
+    res.redirect(route)
+})
 
 module.exports = router

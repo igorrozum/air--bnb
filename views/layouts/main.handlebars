@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
     <title>{{ title }}</title>
 </head>
-<body class="{{bodyOpen}}">
+<body class="{{bodyOpen}}" id="body">
     <header>
         <div class="headerBlock">
             <a href="/"><i class="fab fa-airbnb fa-3x" id="mainLogo"></i></a>
@@ -21,8 +21,13 @@
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" class="top-link" id="home-link" href="/">Home</a>
                         <a class="nav-item nav-link active" id="top-link" href="/listings">Room Listings</a>
-                        <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign Up</a>
-                        <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign In</a>
+                        {{#if user}}
+                            <a class="nav-item nav-link active" id="top-link" href="/dashboard">Dashboard</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/signIn/logOut">Log Out</a>
+                        {{else}}
+                            <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign Up</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign In</a>
+                        {{/if}}
                     </div>
                 </div>
             </nav>
@@ -167,6 +172,7 @@
 
 
     </header>
+    
 
     {{{ body }}}
 
