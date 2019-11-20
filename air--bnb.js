@@ -17,8 +17,6 @@ app.use(express.json());
 // app.use(session({secret: "This is my secret key"}))
 app.use(session({
     secret: "This is my secret key",
-    name: cookie_name,
-    store: sessionStore, // connect-mongo session store
     proxy: true,
     resave: true,
     saveUninitialized: true
