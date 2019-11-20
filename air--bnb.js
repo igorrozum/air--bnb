@@ -30,8 +30,8 @@ app.use((req, res, next) => {
 
 
 const generalRouter = require('./Routes/General')
-const userSignUpRouter = require('./Routes/UserSignUp')
-const userSignInRouter = require('./Routes/UserSignIn')
+const userSignUpRouter = require('./Routes/userSignUp')
+const userSignInRouter = require('./Routes/userSignIn')
 const listingsRouter = require('./Routes/Listings')
 const dashboardRouter = require('./Routes/Dashboard')
 app.use('/', generalRouter)
