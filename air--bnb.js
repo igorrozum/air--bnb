@@ -14,13 +14,13 @@ app.set("view engine", "handlebars")
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(session({secret: "This is my secret key"}))
-app.use(session({
-    secret: "This is my secret key",
-    proxy: true,
-    resave: true,
-    saveUninitialized: true
-}))
+app.use(session({secret: "This is my secret key"}))
+// app.use(session({
+//     secret: "This is my secret key",
+//     proxy: true,
+//     resave: true,
+//     saveUninitialized: true
+// }))
 app.use((req, res, next) => {
     //This is a global variable that can be accessed by templates
     res.locals.user = req.session.userInfo
