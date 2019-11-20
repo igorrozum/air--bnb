@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const User = require('../models/User') // For importing Database code
+const User = require('../Models/User') // For importing Database code
 // const session = require('express-session')
 const bcrypt = require('bcryptjs')
 
