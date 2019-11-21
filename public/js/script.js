@@ -93,10 +93,14 @@ for (let i = 0; i < buttons.length; i++) {
             pagePath = document.referrer.substr(document.referrer.lastIndexOf("/")+1)
         else
             pagePath = pageName
-    
+        
+        console.log("got to here")
+
         let page = ""
         if (pagePath == "listings")
             page = "/listings"
+        else if (pagePath.indexOf("dashboard") >= 0)
+            page = "/"
         else
             page = "/"
     

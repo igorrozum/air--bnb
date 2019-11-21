@@ -15,12 +15,6 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({secret: "This is my secret key"}))
-// app.use(session({
-//     secret: "This is my secret key",
-//     proxy: true,
-//     resave: true,
-//     saveUninitialized: true
-// }))
 app.use((req, res, next) => {
     //This is a global variable that can be accessed by templates
     res.locals.user = req.session.userInfo
@@ -34,11 +28,13 @@ const userSignUpRouter = require('./Routes/userSignUp')
 const userSignInRouter = require('./Routes/userSignIn')
 const listingsRouter = require('./Routes/Listings')
 const dashboardRouter = require('./Routes/Dashboard')
+const searchRouter = require('./Routes/Search')
 app.use('/', generalRouter)
 app.use('/signUp', userSignUpRouter)
 app.use('/signIn', userSignInRouter)
 app.use('/listings', listingsRouter)
 app.use('/dashboard', dashboardRouter)
+app.use('/searchRooms', searchRouter)
 
 app.use('/', (req, res) => {
     res.render("404")

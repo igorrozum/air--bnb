@@ -1,0 +1,48 @@
+{{!-- <div class="emptyBody"> --}}
+
+
+<h2 id="addRoomHeading">Add Room</h2>
+
+<div id="addRoomBlock">
+
+    <form action="/dashboard/addRoom" method="POST" enctype="multipart/form-data">
+            <input type="text" class="form-control" placeholder="Room Title" name="title">
+            <textarea class="form-control" rows="3" placeholder="Description of the room" name="description"></textarea>
+            <input type="text" class="form-control" placeholder="Address" name="address">
+
+            <div class="form-group splited">
+                <select class="form-control" name="country">
+                <option value="" disabled selected>Country</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+
+                <select class="form-control" name="state">
+                <option value="" disabled selected>Province/State</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                </select>
+            </div>
+
+            <div class="form-group splited">
+                <input type="test" class="form-control" placeholder="City" name="city">
+                <input type="text" class="form-control" placeholder="Postal Code" name="postalCode">
+            </div>
+            
+            <div class="form-group splited">
+                <input type="number" class="form-control" placeholder="Price" name="price">
+                <input type="file" class="form-control-file" name="picture" >
+            </div>
+
+            <button class="btn btn-primary" id="addRoomBut">Add the Room</button>
+</form>
+</div>
+
+
+{{!-- </div> --}}

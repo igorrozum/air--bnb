@@ -6,6 +6,7 @@
 html {
     margin: 0;
     padding: 0;
+    
 }
 
 @font-face {
@@ -42,9 +43,6 @@ body {
     
 }
 
-.emptyBody {
-    min-height: calc(100vh - 210px);
-}
 
 
 
@@ -84,9 +82,8 @@ header nav a {
 .headerBlock {
     height: 80px;
     display: grid;
-    grid-template-columns: 60px auto;
+    grid-template-columns: 1fr 8fr;
     align-items: center;
-    justify-content: space-between;
     
 }
 
@@ -94,13 +91,35 @@ header nav a {
     border: 0;
 }
 
+#navBar {
+    justify-self: end;
+}
+
 .fa-airbnb {
     color: #ed6464;
     padding-left: 40px;
 }
 
+
+.btn-primary.addRoom {
+    background-color: #ed6464;
+    color: white;
+}
+
+.btn-primary.addRoom:hover {
+    border-color: #ed6464;
+}
+
 #top-link {
     padding-right: 40px;
+}
+
+#searchBlock {
+    display: flex;
+}
+
+#searchField {
+    margin: 0;
 }
 
 #home-link {
@@ -131,6 +150,16 @@ header nav a {
 
 .modal-open {
     overflow: hidden;
+}
+
+.navbar-nav button {
+    color: #ed6464;
+    border: 1px solid #ed6464;
+}
+
+.navbar-nav button:hover {
+    color: white;
+    background-color: #ed6464;
 }
 
 @media only screen and (max-width: 992px) {
@@ -208,12 +237,15 @@ header nav a {
 
 /* Footer */
 footer {
-    height: 130px;
+    height: 100px;
     background-color: #F0F0F0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-items: center;
+    /* position: absolute;
+    bottom: 0;
+    width: 100%; */
 }
 
 footer .fab {
@@ -435,6 +467,10 @@ label.checkbox-inline {
     justify-items: center;
 }
 
+#wasntFound {
+    text-align: center;
+}
+
 .card {
     width: 21rem;
     min-height: 55vh;
@@ -504,17 +540,4 @@ label.checkbox-inline {
         object-fit: cover;
     }
 
-}
-
-
-
-.middleText {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.middleText h1 {
-    text-align: center;
-    margin: auto;
 }

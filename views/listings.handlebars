@@ -35,19 +35,27 @@
 
 <section id="roomListingsSection">
     <h2>Room Listings</h2>
+    {{#unless rooms}}
+    <div class="emptyBody middleText">
+      <h2>Sorry, we coulnd't find any rooms</h2>
+    </div>
+      
+    {{/unless}}
     <div id="roomListingsBlock" class="card-deck">
-        <div class="card">
-            <img class="card-img-top" id="testImage" src="img/room1.jpg" alt="Card image cap">
-            <div class="card-body">
-                <p class="aptLocation">entire apartment · citta della pieve</p>
-                <h5 class="card-title">Leccio Apartment - Chimbollelo</h5>
-                <p class="card-text">&#36;80 CAD/night</p>
-                <small><span class="ratingStar">&#9733;</span><span class="ratingNum"> 4.9</span> (325) · Superhost</small>
+        {{#each rooms}}
+            <div class="card">
+                <img class="card-img-top" id="testImage" src="/uploads/rooms/{{this.user}}/{{this.title}}/{{this.roomPic}}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="aptLocation">{{this.address}}</p>
+                    <h5 class="card-title">{{this.title}}</h5>
+                    <p class="card-text">&#36;{{this.price}} CAD/night</p>
+                    <small><span class="ratingStar">&#9733;</span><span class="ratingNum"> 4.9</span> (325) · Superhost</small>
+                </div>
             </div>
-        </div>
+        {{/each}}
 
     
-        <div class="card">
+        {{!-- <div class="card">
             <img class="card-img-top" src="img/room2.jpg" alt="Card image cap">
             <div class="card-body">
                 <p class="aptLocation">entire apartment · milan</p>
@@ -99,7 +107,7 @@
                 <p class="card-text">&#36;105 CAD/night</p>
                 <small><span class="ratingStar">&#9733;</span><span class="ratingNum"> 4.77</span> (357)</small>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 

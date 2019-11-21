@@ -1,3 +1,16 @@
-<div class="emptyBody middleText">
-    <h1>Admin Dashboard<br>Welcome {{ user.fname }} {{ user.lname }}</h1>
+{{!-- <div class="emptyBody middleText"> --}}
+
+<div id="dashboardBlock">
+
+    {{#each rooms}}
+        <div id="roomBlock">
+            <img src="/uploads/rooms/{{this.user}}/{{this.title}}/{{this.roomPic}}" alt="">
+            <h4>{{this.title}}</h4>
+            <hr>
+        </div>
+
+    {{else}}
+        At present, there is no tasks in the database
+    {{/each}}
 </div>
+{{!-- </div> --}}

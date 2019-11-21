@@ -6,28 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
     <title>{{ title }}</title>
 </head>
 <body class="{{bodyOpen}}" id="body">
     <header>
         <div class="headerBlock">
             <a href="/"><i class="fab fa-airbnb fa-3x" id="mainLogo"></i></a>
-            <nav class="navbar navbar-expand-lg navbar-light my-2 my-lg-0">
+            <nav class="navbar navbar-expand-lg navbar-light my-2 my-lg-0" id="navBar">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="fab fa-airbnb fa-2x"><span id="arrowDown">&#9662;</span></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" class="top-link" id="home-link" href="/">Home</a>
-                        <a class="nav-item nav-link active" id="top-link" href="/listings">Room Listings</a>
+                        {{!-- <a class="nav-item nav-link active" id="top-link" id="home-link" href="/">Home</a> --}}
+                        <a class="nav-item nav-link active" id="top-link" href="/listings">Room&nbsp;Listings</a>
                         {{#if user}}
                             <a class="nav-item nav-link active" id="top-link" href="/dashboard">Dashboard</a>
-                            <a class="nav-item nav-link active" id="top-link" href="/signIn/logOut">Log Out</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/signIn/logOut">Log&nbsp;Out</a>
+                            <a  id="top-link" href="/dashboard/addRoom"><button class="btn btn-primary addRoom">Add&nbsp;Room</button></a>
                         {{else}}
-                            <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign Up</a>
-                            <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign In</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign&nbsp;Up</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign&nbsp;In</a>
                         {{/if}}
+                        
+                        <form action="/searchRooms" method="POST" id="searchBlock">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search by city" aria-label="Search" id="searchField" name="cityToSearch">
+                            <button class="btn btn-outline-success"><i class="fas fa-search"></i></button>
+                        </form>
                     </div>
                 </div>
             </nav>
