@@ -57,7 +57,8 @@ router.post('/addRoom', isAuthenticated, (req, res) => {
 
             req.files.picture.mv(`${picturePath}/${room.title}/${req.files.picture.name}`)
             .then(() => {
-                room.updateOne({roomPic: req.files.picture.name})
+                const fullPicPath = `/uploads/rooms/${room.user}/${room.title}/${req.files.picture.name}`
+                room.updateOne({roomPic: fullPicPath})
                 .then(() => {
                     console.log(`Picture ${req.files.picture.name} has been saved`)
                     res.redirect('/dashboard')

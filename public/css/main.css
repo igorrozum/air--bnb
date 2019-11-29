@@ -461,7 +461,7 @@ label.checkbox-inline {
 
 #roomListingsBlock {
     width: 80vw;
-    margin: 0 auto;
+    margin: 0 auto 5rem auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
@@ -473,8 +473,24 @@ label.checkbox-inline {
 
 .card {
     width: 21rem;
-    min-height: 55vh;
+    /* min-height: 55vh; */
     border: 0;
+    margin-bottom: 5rem;
+}
+
+.card-links {
+    padding-top: 5px;
+    margin-bottom: 6rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.card-links:hover {
+    text-decoration: none;
+    border: 1px solid lightgray;
+    
+    transition: 1s;
 }
 
 .card img {
@@ -523,6 +539,55 @@ label.checkbox-inline {
 }
 
 
+
+
+
+
+
+.room-page {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - (180px + 8rem));
+    margin: 3rem auto 5rem auto;
+    /* padding-top: 3rem; */
+}
+
+
+.room-image>img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.room-title {
+    padding: 0 0 0 5rem;
+}
+
+
+
+.bookingForm {
+    display: flex;
+    margin: 2rem 0 1rem 0;
+}
+
+.bookingForm>div {
+    margin-right: 1rem;
+}
+
+.book-btn {
+    background: #ed6464;
+    color: white;
+}
+
+.book-btn:hover {
+    background: white;
+    color: #ed6464;
+    border: 1px solid #ed6464;
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
     #roomListingsBlock {
         width: 90vw;
@@ -541,3 +606,6 @@ label.checkbox-inline {
     }
 
 }
+
+
+
