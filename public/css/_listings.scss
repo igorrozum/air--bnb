@@ -1,0 +1,106 @@
+@import './variables';
+
+
+#roomListingsSection>h2 {
+    text-align: center;
+    padding: 60px 0 30px 0;
+}
+
+#roomListingsBlock {
+    width: 80vw;
+    margin: 0 auto 5rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+#wasntFound {
+    text-align: center;
+}
+
+.card {
+    width: 21rem;
+    /* min-height: 55vh; */
+    border: 0;
+    margin-bottom: 5rem;
+}
+
+.card-links {
+    padding-top: 5px;
+    margin-bottom: 6rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.card-links:hover {
+    text-decoration: none;
+    border: 1px solid lightgray;
+    
+    transition: 1s;
+}
+
+.card img {
+    border-radius: 4px;
+}
+
+.card-body {
+    padding-left: 0;
+    line-height: 0.5em;
+}
+
+.card-img-top {
+    height: 15vw;
+    object-fit: cover;
+}
+
+.aptLocation {
+   text-transform: uppercase;
+   font-family:  'Airbnb Cereal App Bold';
+   font-size: 0.8em;
+   color: rgb(118, 118, 118); 
+}
+
+.card-title {
+    color: rgb(72, 72, 72);
+    padding-bottom: 0.5em;
+    font-family: 'Airbnb Cereal App Medium';
+}
+
+.card-text {
+    color: rgb(72, 72, 72);
+    font-family: 'Airbnb Cereal App Light';
+}
+
+.ratingStar {
+    color: rgb(55, 130, 136);
+}
+
+.ratingNum {
+    font-family: 'Airbnb Cereal App Medium';
+    color: rgb(72, 72, 72);
+}
+
+.card-body>small {
+    color: rgb(118, 118, 118);
+}
+
+
+@media only screen and (max-width: 768px) {
+    #roomListingsBlock {
+        width: 90vw;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .card {
+        min-height: 55vh;
+        border: 0;
+    }
+
+    .card-img-top {
+        height: 50vw;
+        object-fit: cover;
+    }
+
+}

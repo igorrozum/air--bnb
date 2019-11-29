@@ -1,0 +1,43 @@
+@import './variables';
+
+
+.room-page {
+    width: 90vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - (180px + 8rem));
+    margin: 3rem auto 5rem auto;
+    /* padding-top: 3rem; */
+}
+
+
+.room-image>img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.room-title {
+    padding: 0 0 0 5rem;
+}
+
+
+
+.bookingForm {
+    display: flex;
+    margin: 2rem 0 1rem 0;
+
+    >div {
+        margin-right: 1rem;
+    }
+}
+
+.book-btn {
+    background: $airbnbPinkColor;
+    color: white;
+
+    &:hover {
+        background: white;
+        color: $airbnbPinkColor;
+        border: 1px solid $airbnbPinkColor;
+    }
+}

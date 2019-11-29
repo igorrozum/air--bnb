@@ -1,0 +1,24 @@
+@import './header';
+@import './index';
+@import './listings';
+@import './dashboard';
+@import './room';
+@import './footer';
+@import './variables';
+@import './fonts';
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Airbnb Cereal App Book';
+}

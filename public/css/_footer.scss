@@ -1,0 +1,50 @@
+@import './variables';
+
+
+footer {
+    height: 100px;
+    background-color: #F0F0F0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    .fab {
+        color: $airbnbPinkColor;
+        padding: 0 50px;
+    }
+
+    .fab:hover {
+        color: black;
+    }
+
+    nav>a {
+        padding: 0 30px;
+        color: black;
+    }
+
+    nav>a:hover {
+        text-decoration: none;
+        color: $airbnbPinkColor;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    footer {
+        height: 160px;
+        background-color: #F0F0F0;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        .fab {
+            text-align: center;
+            color: $airbnbPinkColor;
+            padding: 0 20px;
+        }
+
+        nav>a {
+            padding: 0 10px;
+            color: black;
+        }
+    }
+}

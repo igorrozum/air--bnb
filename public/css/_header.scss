@@ -1,0 +1,161 @@
+@import './variables';
+
+
+#banner {
+    background-image: url('../img/bg.jpg');
+    height: calc(100vh - 80px);
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.headerBlock {
+    height: 80px;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    align-items: center;
+    
+}
+
+.navbar-toggler {
+    border: 0;
+}
+
+#navBar {
+    justify-self: end;
+}
+
+.fa-airbnb {
+    color: $airbnbPinkColor;
+    padding-left: 40px;
+}
+
+
+.btn-primary.addRoom {
+    background-color: $airbnbPinkColor;
+    color: white;
+}
+
+.btn-primary.addRoom:hover {
+    border-color: $airbnbPinkColor;
+}
+
+#top-link {
+    padding-right: 40px;
+}
+
+#searchBlock {
+    display: flex;
+}
+
+#searchField {
+    margin: 0;
+}
+
+#home-link {
+    display: none;
+}
+
+#top-link:hover {
+    color: $airbnbPinkColor;
+}
+
+#popUpWindow {
+    padding-top: 5%;
+}
+
+#popUpSignUp, #popUpSignIn, #popUpConf {
+    padding-top: 5%;
+}
+
+#SignUpBut {
+    background-color: $airbnbPinkColor;
+    border: 0;
+}
+
+.formError {
+    color: red;
+}
+
+
+.modal-open {
+    overflow: hidden;
+}
+
+.navbar-nav button {
+    color: $airbnbPinkColor;
+    border: 1px solid $airbnbPinkColor;
+}
+
+.navbar-nav button:hover {
+    color: white;
+    background-color: $airbnbPinkColor;
+}
+
+@media only screen and (max-width: 992px) {
+    .headerBlock {
+        display: inline;
+        
+    }
+
+    #mainLogo {
+        display: none;
+    }
+
+    .fa-airbnb {
+        padding-left: 0;
+    }
+
+    #arrowDown {
+        font-size: 0.6em;
+        color: rgb(72, 72, 72);
+    }
+
+    #home-link {
+        display: inline;
+    }
+
+    .navbar-nav {
+        padding-top: 30px;
+    }
+}
+
+/* Header mobile */
+
+@media only screen and (max-width: 768px) {
+    #addHeader {
+        height: 30vh;
+        background-image: url('../img/bg.jpg');
+        /* width: 100%;
+        height: 100%; */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .headerBlock {
+        display: inline;
+        
+    }
+
+    #mainLogo {
+        display: none;
+    }
+
+    .fa-airbnb {
+        padding-left: 0;
+    }
+
+    #arrowDown {
+        font-size: 0.6em;
+        color: rgb(72, 72, 72);
+    }
+
+    #home-link {
+        display: inline;
+    }
+
+    .navbar-nav {
+        padding-top: 30px;
+    }
+}

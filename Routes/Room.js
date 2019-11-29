@@ -11,10 +11,11 @@ router.get('/:roomId', (req, res) => {
                 title: room.title,
                 room: room
             })
-            console.log(room)
         
     })
     .catch(err => console.log('Room search failed'))
 })
 
 module.exports = router
+
+
