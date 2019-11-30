@@ -4,9 +4,15 @@
     </div>
     <div class="room-title">
         <h2>{{ room.title }}</h2>
-        <p>{{ room.description }}</p>
+        {{#if room.description}}
+            <p>{{ room.description }}</p>
+        {{/if}}
+        {{#if room.address}}
         <p class="aptLocation">{{ room.address }}, {{ room.city }}</p>
+        {{/if}}
+        {{#if room.price}}
         <h5>${{ room.price }} CAD/night</h5>
+        {{/if}}
 
         <form action="/room/{{ room._id }}/booking" method="POST">
             <div class="bookingForm">

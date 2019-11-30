@@ -434,6 +434,14 @@ label.checkbox-inline {
   margin: 0 2rem 1rem 0;
 }
 
+#dashboardBlock a {
+  color: black;
+}
+
+#dashboardBlock a:hover {
+  text-decoration: none;
+}
+
 #roomBlock {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -451,12 +459,14 @@ label.checkbox-inline {
       grid-template-columns: 1fr 1fr;
   height: calc(100vh - (180px + 8rem));
   margin: 3rem auto 5rem auto;
-  /* padding-top: 3rem; */
 }
 
 .room-image > img {
   width: 100%;
+  max-height: 50vh;
   border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .room-title {

@@ -13,7 +13,7 @@ router.get('/:roomId', (req, res) => {
             })
         
     })
-    .catch(err => console.log('Room search failed'))
+    .catch(err => console.log(`Room search failed ${err}`))
 })
 
 module.exports = router

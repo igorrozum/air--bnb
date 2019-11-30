@@ -3,12 +3,13 @@
 <div id="dashboardBlock">
 
     {{#each rooms}}
-        <div id="roomBlock">
-            <img src="/uploads/rooms/{{this.user}}/{{this.title}}/{{this.roomPic}}" alt="">
-            <h4>{{this.title}}</h4>
-            <hr>
-        </div>
-
+        <a href="/room/{{this._id}}" >
+            <div id="roomBlock">
+                <img src="{{this.roomPic}}" alt="">
+                <h4>{{this.title}}</h4>
+                <hr>
+            </div>
+        </a>
     {{else}}
         At present, there is no tasks in the database
     {{/each}}

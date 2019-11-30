@@ -45,7 +45,7 @@
         {{#each rooms}}
           <a href="/room/{{ this._id }}" class="card-links">
             <div class="card">
-                <img class="card-img-top" id="testImage" src="/uploads/rooms/{{this.user}}/{{this.title}}/{{this.roomPic}}" alt="Card image cap">
+                <img class="card-img-top" id="testImage" src="{{this.roomPic}}" alt="Card image cap">
                 <div class="card-body">
                     <p class="aptLocation">{{this.address}}</p>
                     <h5 class="card-title">{{this.title}}</h5>
