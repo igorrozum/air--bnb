@@ -27,11 +27,7 @@ router.post('/', (req, res)=>{
     let pass = {
         input : req.body.signInPass,
         error : "",
-        patt : /^.{5,90}$/
-    }
-    if (!pass.patt.test(pass.input)) {
-        pass.error = "Password is too short";
-        valid = false;
+        patt : /^.{1,90}$/
     }
 
     const pagePath = req.header('referer').substr(req.header('referer').lastIndexOf("/")+1)
@@ -48,6 +44,7 @@ router.post('/', (req, res)=>{
     if(!valid)
     {
         res.render(page, {
+            title: 'AirBnb',
             emailError: email.error,
             passError: pass.error,
             signInShowValue: "show",
@@ -68,6 +65,7 @@ router.post('/', (req, res)=>{
                         res.redirect('/dashboard')
                     } else {
                         res.render(page, {
+                            title: 'AirBnb',
                             passError: "Your password doesn't match",
                             signInShowValue: "show",
                             signInblockValue: "block",
@@ -81,6 +79,7 @@ router.post('/', (req, res)=>{
                 .catch(err => console.log(`Something went wrong: ${err}`))
             } else {
                 res.render(page, {
+                    title: 'AirBnb',
                     emailError: "Your email wasn't found",
                     signInShowValue: "show",
                     signInblockValue: "block",

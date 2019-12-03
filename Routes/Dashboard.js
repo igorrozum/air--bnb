@@ -17,16 +17,21 @@ router.get('/', isAuthenticated, (req, res) => {
         Room.find({user: req.session.userInfo._id})
         .then(rooms => {
             res.render('adminDashboard', {
+                title: `${req.session.userInfo.fname}'s Dashboard`,
                 rooms: rooms
             })
         })
     else
-        res.render('userDashboard')
+        res.render('userDashboard', {
+            title: `${req.session.userInfo.fname}'s Dashboard`
+        })
 })
 
 
 router.get('/addRoom', isAuthenticated, (req, res) => {
-    res.render('addRoom')
+    res.render('addRoom', {
+        title: 'Add Room'
+    })
 })
 
 router.post('/addRoom', isAuthenticated, (req, res) => {

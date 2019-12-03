@@ -91,6 +91,7 @@ router.post('/', (req, res)=>{
             else
                 page = "index"
             res.render(page, {
+                title: 'AirBnb',
                 emailError: email.error,
                 fnameError: fname.error,
                 lnameError: lname.error,
@@ -148,6 +149,7 @@ router.post('/', (req, res)=>{
                 else
                     page = "index"
                 res.render(page, {
+                    title: 'AirBnb',
                     confShowValue: "show",
                     confblockValue: "block",
                     bodyOpen: "modal-open",

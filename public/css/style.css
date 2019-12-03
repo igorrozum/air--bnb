@@ -298,14 +298,50 @@ label.checkbox-inline {
   }
 }
 
+#roomListingsSection {
+  width: 80vw;
+  margin: 0 auto 5rem auto;
+}
+
 #roomListingsSection > h2 {
   text-align: center;
-  padding: 60px 0 30px 0;
+  padding: 30px 0 20px 0;
+}
+
+.listing-search {
+  width: 78vw;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 4rem;
+}
+
+.listing-search label {
+  color: gray;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.listing-search button {
+  height: 40%;
+  line-height: 0;
+  border: 1px solid #ed6464;
+  color: #ed6464;
+  margin-top: -0.2rem;
+}
+
+.listing-search button:hover {
+  color: white;
+  background: #ed6464;
+  border-color: #ed6464;
 }
 
 #roomListingsBlock {
-  width: 80vw;
-  margin: 0 auto 5rem auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;

@@ -35,6 +35,25 @@
 
 <section id="roomListingsSection">
     <h2>Room Listings</h2>
+
+    <form method="POST" action="/listings">
+        <div class="form-row listing-search">
+            <div class="form-group">
+                <label>CHECK-IN</label>
+                <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
+                <small class="text-danger" >{{checkinError}}</small> 
+            </div>
+            <div class="form-group">
+                <label>CHECK-OUT</label>
+                <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
+                <small class="text-danger" >{{checkoutError}}</small>
+            </div>
+          <button class="btn-lg btn-outline-primary" id="searchBut" type="submit">Search</button>
+        </div>
+        <small class="text-danger" >{{datesError}}</small>
+    </form>
+    
+
     {{#unless rooms}}
     <div class="emptyBody middleText">
       <h2>Sorry, we coulnd't find any rooms</h2>

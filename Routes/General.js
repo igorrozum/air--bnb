@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const User = require('../Models/User')
+const Room = require('../Models/Room')
 
 
 router.get("/", (req, res)=>{
@@ -32,14 +34,34 @@ router.post("/", (req, res)=>{
 
     if (checkinError || checkoutError || datesError) {
         res.render("index", {
+            title : "Home | AirBnb",
             checkinError : checkinError,
             checkoutError : checkoutError,
             datesError : datesError
         })
     } else {
-        res.redirect("/");
+        User.find()
+        .then(users => {
+            if (users) {
+                const roomIds = []
+                for (user of users) {
+                    for (let i = 0; i < user.bookedRooms.length; i++) {
+                        if ((checkinDate >= user.bookedRooms[i].checkIn && checkinDate < user.bookedRooms[i].checkOut) || (checkoutDate > user.bookedRooms[i].checkIn && checkoutDate <= user.bookedRooms[i].checkOut))
+                            roomIds.push(user.bookedRooms[i].roomId)
+                    }
+                }
+                Room.find({'_id': {$nin: roomIds}})
+                .then(rooms => {
+                    res.render('listings', {
+                        title: 'Room Listings',
+                        rooms: rooms
+                    })
+                })
+                .catch(err => console.log(`Rooms weren't found for this date: ${err}`))
+            }
+        })
+        .catch(err => console.log(`Users weren't found: ${err}`))
     }
-
 })
 
 

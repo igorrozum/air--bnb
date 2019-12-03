@@ -12,8 +12,9 @@ const userSchema = new Schema({
     password: {type: String, required: true},
     admin: {type: Boolean, default: false},
     dateOfBirth: {type: Date, required: true},
-    bookedRooms : [mongoose.Types.ObjectId]
-
+    bookedRooms: [{roomId: mongoose.Schema.Types.ObjectId,
+                   checkIn: Date,
+                   checkOut: Date}]
 })
 
 

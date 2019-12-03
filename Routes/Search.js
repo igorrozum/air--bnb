@@ -11,6 +11,7 @@ router.post('/', (req, res) => {
                     {description:{ $regex : new RegExp(req.body.search, "i") }}]})
     .then(rooms => {
         res.render('listings', {
+            title: 'Room Listings',
             rooms: rooms
         })
     })
