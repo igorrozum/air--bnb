@@ -339,6 +339,7 @@ label.checkbox-inline {
   color: white;
   background: #ed6464;
   border-color: #ed6464;
+  cursor: pointer;
 }
 
 #roomListingsBlock {

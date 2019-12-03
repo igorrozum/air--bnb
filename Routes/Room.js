@@ -63,12 +63,20 @@ router.post('/:roomId', (req, res) => {
     } else {
         User.findById(req.session.userInfo._id)
         .then(user => {
+            // if (user) {
+            //     user.bookedRooms.push({roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate})
+                
+            //     // user.save()
+            //     // .then(() => res.redirect(`/room/${req.params.roomId}`))
+            //     // .catch(err => console.log(`Booking wasn't saved: ${err}`))
+            //     res.redirect(`/room/${req.params.roomId}`) 
+            // }
             if (user) {
-                user.bookedRooms.push({roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate})
-                user.save()
+                user.updateOne({$push: {bookedRooms: {roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate}}})
                 .then(() => res.redirect(`/room/${req.params.roomId}`))
                 .catch(err => console.log(`Booking wasn't saved: ${err}`))
-                
+            } else {
+                res.redirect(`/room/${req.params.roomId}`)
             }
         })
     }
