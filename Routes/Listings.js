@@ -37,6 +37,9 @@ router.post('/', (req, res) => {
     if (checkinDate > checkoutDate)
         datesError = "Check-out date can't be before check-in date"
 
+    if (checkinDate.toString() == checkoutDate.toString())
+        datesError = "Room can be booked minimum for one day"
+
     if (checkinError || checkoutError || datesError) {
         Room.find()
         .then(rooms => {
@@ -57,6 +60,8 @@ router.post('/', (req, res) => {
                 for (user of users) {
                     for (let i = 0; i < user.bookedRooms.length; i++) {
                         if ((checkinDate >= user.bookedRooms[i].checkIn && checkinDate < user.bookedRooms[i].checkOut) || (checkoutDate > user.bookedRooms[i].checkIn && checkoutDate <= user.bookedRooms[i].checkOut))
+                            roomIds.push(user.bookedRooms[i].roomId)
+                        else if (checkinDate <= user.bookedRooms[i].checkIn && checkoutDate >= user.bookedRooms[i].checkOut)
                             roomIds.push(user.bookedRooms[i].roomId)
                     }
                 }

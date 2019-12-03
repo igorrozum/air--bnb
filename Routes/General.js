@@ -31,6 +31,9 @@ router.post("/", (req, res)=>{
 
     if (checkinDate > checkoutDate)
         datesError = "Check-out date can't be before check-in date"
+        
+    if (checkinDate.toString() == checkoutDate.toString())
+        datesError = "Room can be booked minimum for one day"
 
     if (checkinError || checkoutError || datesError) {
         res.render("index", {
