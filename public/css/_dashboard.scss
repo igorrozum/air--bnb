@@ -1,3 +1,8 @@
+@mixin flexAlign {
+    display: flex;
+    align-items: center;
+}
+
 .emptyBody {
     min-height: calc(100vh - 310px);
 }
@@ -31,7 +36,8 @@
 
 
 #dashboardBlock {
-    width: 80%;
+    width: 70%;
+    min-height: calc(100vh - (180px + 8rem));
     margin: 3rem auto 5rem auto;
 
     img {
@@ -42,16 +48,22 @@
         margin: 0 2rem 1rem 0;
     }
 
-    a {
-        color: black;
-
-        &:hover {
-            text-decoration: none;
-        }
+    a:hover {
+        text-decoration: none;
     }
 }
 
+
+
 #roomBlock {
-    display: flex;
-    align-items: center;
+    @include flexAlign;
+    justify-content: space-between;
+
+    >div:first-of-type, >div:last-child {
+        @include flexAlign;
+    }
+
+    >div:last-child>a {
+        margin-right: 1rem;
+    }
 }

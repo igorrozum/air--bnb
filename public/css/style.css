@@ -31,6 +31,10 @@
   padding-left: 40px;
 }
 
+.btn-outline-success.search {
+  border-color: #ed6464;
+}
+
 .btn-primary.addRoom {
   background-color: #ed6464;
   color: white;
@@ -41,7 +45,7 @@
 }
 
 #top-link {
-  padding-right: 40px;
+  padding-left: 1rem;
 }
 
 #searchBlock {
@@ -51,7 +55,16 @@
 }
 
 #searchField {
-  margin: 0;
+  margin: 0 0 0 1rem;
+  width: 6rem;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+#searchField:focus {
+  width: 13rem;
+  -webkit-transition: 300ms;
+  transition: 300ms;
 }
 
 #home-link {
@@ -93,6 +106,11 @@
   background-color: #ed6464;
 }
 
+.navbar-nav button:not(:disabled):not(.disabled):active {
+  background: #ed6464;
+  border-color: #ed6464;
+}
+
 @media only screen and (max-width: 992px) {
   .headerBlock {
     display: inline;
@@ -120,8 +138,6 @@
   #addHeader {
     height: 30vh;
     background-image: url("../img/bg.jpg");
-    /* width: 100%;
-        height: 100%; */
     background-size: cover;
     background-position: center;
   }
@@ -421,7 +437,8 @@ label.checkbox-inline {
 }
 
 #dashboardBlock {
-  width: 80%;
+  width: 70%;
+  min-height: calc(100vh - (180px + 8rem));
   margin: 3rem auto 5rem auto;
 }
 
@@ -432,10 +449,6 @@ label.checkbox-inline {
      object-fit: cover;
   border-radius: 4px;
   margin: 0 2rem 1rem 0;
-}
-
-#dashboardBlock a {
-  color: black;
 }
 
 #dashboardBlock a:hover {
@@ -449,6 +462,22 @@ label.checkbox-inline {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#roomBlock > div:first-of-type, #roomBlock > div:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#roomBlock > div:last-child > a {
+  margin-right: 1rem;
 }
 
 .room-page {
@@ -467,6 +496,10 @@ label.checkbox-inline {
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.room-image.edit {
+  margin-bottom: 3rem;
 }
 
 .room-title {
@@ -587,5 +620,13 @@ html {
 
 body {
   font-family: 'Airbnb Cereal App Book';
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */

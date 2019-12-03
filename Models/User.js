@@ -11,7 +11,9 @@ const userSchema = new Schema({
     lname: {type: String, required: true},
     password: {type: String, required: true},
     admin: {type: Boolean, default: false},
-    dateOfBirth: {type: Date, required: true}
+    dateOfBirth: {type: Date, required: true},
+    bookedRooms : [mongoose.Types.ObjectId]
+
 })
 
 

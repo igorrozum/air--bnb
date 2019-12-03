@@ -31,6 +31,9 @@
     padding-left: 40px;
 }
 
+.btn-outline-success.search {
+    border-color: $airbnbPinkColor;
+}
 
 .btn-primary.addRoom {
     background-color: $airbnbPinkColor;
@@ -42,7 +45,7 @@
 }
 
 #top-link {
-    padding-right: 40px;
+    padding-left: 1rem;
 }
 
 #searchBlock {
@@ -50,7 +53,14 @@
 }
 
 #searchField {
-    margin: 0;
+    margin: 0 0 0 1rem;
+    width: 6rem;
+    transition: 200ms;
+}
+
+#searchField:focus {
+    width: 13rem;
+    transition: 300ms;
 }
 
 #home-link {
@@ -86,12 +96,18 @@
 .navbar-nav button {
     color: $airbnbPinkColor;
     border: 1px solid $airbnbPinkColor;
+
+    &:hover {
+        color: white;
+        background-color: $airbnbPinkColor;
+    }
+
+    &:not(:disabled):not(.disabled):active {
+        background: $airbnbPinkColor;
+        border-color: $airbnbPinkColor;
+    }
 }
 
-.navbar-nav button:hover {
-    color: white;
-    background-color: $airbnbPinkColor;
-}
 
 @media only screen and (max-width: 992px) {
     .headerBlock {

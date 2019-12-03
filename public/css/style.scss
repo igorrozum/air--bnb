@@ -22,3 +22,11 @@ html {
 body {
     font-family: 'Airbnb Cereal App Book';
 }
+
+a {
+    color: black;
+
+    &:hover {
+        color: black;
+    }
+}

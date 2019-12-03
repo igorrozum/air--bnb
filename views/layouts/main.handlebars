@@ -24,7 +24,6 @@
                         {{#if user}}
                             <a class="nav-item nav-link active" id="top-link" href="/dashboard">Dashboard</a>
                             <a class="nav-item nav-link active" id="top-link" href="/signIn/logOut">Log&nbsp;Out</a>
-                            <a  id="top-link" href="/dashboard/addRoom"><button class="btn btn-primary addRoom">Add&nbsp;Room</button></a>
                         {{else}}
                             <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign&nbsp;Up</a>
                             <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign&nbsp;In</a>
@@ -32,8 +31,12 @@
                         
                         <form action="/searchRooms" method="POST" id="searchBlock">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchField" name="search">
-                            <button class="btn btn-outline-success"><i class="fas fa-search"></i></button>
+                            <button class="btn btn-outline-success search"><i class="fas fa-search"></i></button>
                         </form>
+
+                        {{#if user}}
+                            <a  id="top-link" href="/dashboard/addRoom"><button class="btn btn-primary addRoom">Add&nbsp;Room</button></a>
+                        {{/if}}
                     </div>
                 </div>
             </nav>
@@ -47,7 +50,7 @@
                     <!-- header -->
                     <div class="modal-header">
                         <h3 class="modal-title">Sign Up</h3>
-                        <button type="button" class="close" data-dismiss="modal" id="signUpClose">&times;</button>
+                        <button type="button" class="close main" data-dismiss="modal" id="signUpClose">&times;</button>
                     </div>
                     <!-- body -->
                     <div class="modal-body">
@@ -114,10 +117,10 @@
                                 <small>We’ll send you marketing promotions, special offers, inspiration, and policy updates via email.</small>
                             </div>
                             <div class="modal-footer">
-                        {{!-- <button class="btn btn-primary btn-block" id="SignUpBut">Sign Up</button> --}}
-                        <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign Up"><br><br>
-                    </div>
-                    <label class="checkbox-inline"><input type="checkbox" value="">  I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.</label>
+                                {{!-- <button class="btn btn-primary btn-block" id="SignUpBut">Sign Up</button> --}}
+                                <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign Up"><br><br>
+                            </div>
+                            <label class="checkbox-inline"><input type="checkbox" value="">  I don’t want to receive marketing messages from Airbnb. I can also opt out of receiving these at any time in my account settings or via the link in the message.</label>
                         </form>
                     </div>
                     <!-- footer -->
@@ -134,14 +137,14 @@
                     <!-- header -->
                     <div class="modal-header">
                         <h3 class="modal-title">Sign In</h3>
-                        <button type="button" class="close" data-dismiss="modal" id="signInClose">&times;</button>
+                        <button type="button" class="close main" data-dismiss="modal" id="signInClose">&times;</button>
                     </div>
                     <!-- body -->
                     <div class="modal-body">
                         <form role="form" method="POST" action="/signIn">
                             <div class="form-group" >
                             <small id="emailError" class="formError">{{ emailError }}</small>
-                            <input type="email" class="form-control" placeholder="Email address" name="email"/>
+                            <input type="email" class="form-control" placeholder="Email address" name="email" autofocus/>
                             <small id="passError" class="formError">{{ passError }}</small>
                             <input type="password" class="form-control" placeholder="Your password" name="signInPass"/>
                             <div class="modal-footer">
@@ -164,7 +167,7 @@
                     <!-- header -->
                     <div class="modal-header">
                         <h3 class="modal-title">Welcome!</h3>
-                        <button type="button" class="close" data-dismiss="modal" id="confClose">&times;</button>
+                        <button type="button" class="close main" data-dismiss="modal" id="confClose">&times;</button>
                     </div>
                     <!-- body -->
                     <div class="modal-body">

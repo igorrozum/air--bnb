@@ -4,10 +4,12 @@ const isAuthenticated = require('../middleware/auth')
 const Room = require('../Models/Room')
 const path = require('path')
 const fileupload = require("express-fileupload");
+const methodOverride = require('method-override')
 const fs = require('fs');
 
 
 router.use(fileupload())
+router.use(methodOverride('_method'))
 
 
 router.get('/', isAuthenticated, (req, res) => {
@@ -18,7 +20,6 @@ router.get('/', isAuthenticated, (req, res) => {
                 rooms: rooms
             })
         })
-        
     else
         res.render('userDashboard')
 })
@@ -45,16 +46,16 @@ router.post('/addRoom', isAuthenticated, (req, res) => {
     room.save()
     .then(room => {
         if (req.files) {
-            // for (let i = 0; i < req.files.picture.length; i++)
-            //     req.files.picture[i].name = `roomPhoto${i}${path.parse(req.files.profilePic.name).ext}`
-
             req.files.picture.name = `roomPhoto${path.parse(req.files.picture.name).ext}`
 
             const picturePath = `./public/uploads/rooms/${room.user}`
+            // if /public/uploads/rooms/${room.user} doesn't exist, we're creating it
             if (!fs.existsSync(picturePath))
                 fs.mkdirSync(picturePath);
+            // creating folder for the room
             fs.mkdirSync(`${picturePath}/${room.title}`);
 
+            // moving picture to its folder
             req.files.picture.mv(`${picturePath}/${room.title}/${req.files.picture.name}`)
             .then(() => {
                 const fullPicPath = `/uploads/rooms/${room.user}/${room.title}/${req.files.picture.name}`

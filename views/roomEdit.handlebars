@@ -1,0 +1,59 @@
+<h2 id="addRoomHeading">Add Room</h2>
+
+<div id="addRoomBlock">
+
+    <form action="/room/edit/{{room._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="text" class="form-control" placeholder="Room Title" name="title" value="{{room.title}}">
+            <textarea class="form-control" rows="3" placeholder="Description of the room" name="description">{{room.description}}</textarea>
+            <input type="text" class="form-control" placeholder="Address" name="address" value="{{room.address}}">
+
+
+            <div class="form-group splited">
+                <select class="form-control" name="country">
+                <option value="" disabled>Country</option>
+                <option class="roomCountry">1</option>
+                <option class="roomCountry">2</option>
+                <option class="roomCountry">3</option>
+                <option class="roomCountry">4</option>
+                <option class="roomCountry">5</option>
+                </select>
+
+                <select class="form-control" name="state">
+                <option value="" disabled>Province/State</option>
+                <option class="roomState">1</option>
+                <option class="roomState">2</option>
+                <option class="roomState">3</option>
+                <option class="roomState">4</option>
+                <option class="roomState">5</option>
+                </select>
+            </div>
+
+            <div class="form-group splited">
+                <input type="test" class="form-control" placeholder="City" name="city" value="{{room.city}}">
+                <input type="text" class="form-control" placeholder="Postal Code" name="postalCode" value="{{room.postalCode}}">
+            </div>
+            
+            <div class="form-group splited">
+                <input type="number" class="form-control" placeholder="Price" name="price" value="{{room.price}}">
+                <input type="file" class="form-control-file" name="picture" placeholder="Update Image" class="btn btn-primary">
+            </div>
+
+            <div class="room-image edit">
+                <img src="{{room.roomPic}}" alt="room picture">
+            </div>
+            
+
+            <button class="btn btn-primary" id="addRoomBut">Update the Room</button>
+    </form>
+</div>
+
+<script>
+    const countryOptions = document.querySelectorAll('.roomCountry')
+    const stateOptions = document.querySelectorAll('.roomState')
+    for (country of countryOptions)
+        if (country.value == {{room.country}})
+            country.setAttribute('selected', 'selected')
+    for (state of stateOptions)
+        if (state.value == {{room.state}})
+            state.setAttribute('selected', 'selected')
+</script>

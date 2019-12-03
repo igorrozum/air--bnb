@@ -2,7 +2,7 @@ let signUpBut = document.querySelector("#SignUpBut");
 let emailErrorDiv = document.querySelector("#emailError");
 
 
-let form = document.querySelector("#signUpForm");
+let signUpForm = document.querySelector("#signUpForm");
 
 signUpBut.addEventListener("click", ()=>{
     // let email = {
@@ -74,17 +74,15 @@ signUpBut.addEventListener("click", ()=>{
     // }
     
     if (valid) {
-        form.setAttribute("action", "/signUp");
-        form.setAttribute("method", "POST");
-        form.submit();
+        signUpForm.setAttribute("action", "/signUp");
+        signUpForm.setAttribute("method", "POST");
+        signUpForm.submit();
     }
 })
 
 
-
-
 // To close Sign Up and Sign In forms after they are rendered
-let buttons = document.querySelectorAll(".close")
+let buttons = document.querySelectorAll(".close.main")
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', ()=>{
         let pagePath = ""
@@ -107,3 +105,24 @@ for (let i = 0; i < buttons.length; i++) {
         location.replace(page)
     })
 }
+
+
+
+// const deleteRoomButton = document.querySelectorAll('.js-confirm-delete')
+
+
+// for(let i=0; i<deleteRoomButton.length; i++)
+// {
+//     deleteRoomButton[i].addEventListener('click', () => {
+//         const deleteRoomForm = document.querySelector('.js-delete-room-form')
+//         deleteRoomForm.setAttribute("method", "POST");
+    
+//         deleteRoomForm.submit();
+//     })
+// }
+
+
+
+
+
+
