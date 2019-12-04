@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Room = require('../Models/Room')
 const User = require('../Models/User')
+const middleware = require('../middleware/auth')
+const isAuthenticated = middleware.isAuthenticated
+const isAdmin = middleware.isAdmin
 const fileupload = require("express-fileupload");
 const methodOverride = require('method-override')
 const path = require('path')
@@ -15,18 +18,24 @@ router.use(methodOverride('_method'))
 router.get('/:roomId', (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
-        if (room)
+        if (room) {
+            let canEdit = false
+            if (req.session.userInfo)
+                if (req.session.userInfo._id == room.user)
+                    canEdit = true
+
             res.render('room', {
                 title: room.title,
-                room: room
+                room: room,
+                itsAdmin: canEdit
             })
-        
+        }
     })
     .catch(err => console.log(`Room search failed ${err}`))
 })
 
 
-router.post('/:roomId', (req, res) => {
+router.post('/:roomId', isAuthenticated, (req, res) => {
     let checkinError = "";
     let checkoutError = "";
     let datesError = "";
@@ -61,29 +70,58 @@ router.post('/:roomId', (req, res) => {
         })
         .catch(err => console.log(`Room search failed ${err}`))
     } else {
-        User.findById(req.session.userInfo._id)
-        .then(user => {
-            // if (user) {
-            //     user.bookedRooms.push({roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate})
-                
-            //     // user.save()
-            //     // .then(() => res.redirect(`/room/${req.params.roomId}`))
-            //     // .catch(err => console.log(`Booking wasn't saved: ${err}`))
-            //     res.redirect(`/room/${req.params.roomId}`) 
-            // }
-            if (user) {
-                user.updateOne({$push: {bookedRooms: {roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate}}})
-                .then(() => res.redirect(`/room/${req.params.roomId}`))
-                .catch(err => console.log(`Booking wasn't saved: ${err}`))
-            } else {
-                res.redirect(`/room/${req.params.roomId}`)
+        User.find()
+        .then(users => {
+            if (users) {
+                let alreadyBookedRooms = []
+                for (user of users) {
+                    for (let i = 0; i < user.bookedRooms.length; i++) {
+                        if ((checkinDate >= user.bookedRooms[i].checkIn && checkinDate < user.bookedRooms[i].checkOut) || (checkoutDate > user.bookedRooms[i].checkIn && checkoutDate <= user.bookedRooms[i].checkOut))
+                            alreadyBookedRooms.push(JSON.stringify(user.bookedRooms[i].roomId))
+                        else if (checkinDate <= user.bookedRooms[i].checkIn && checkoutDate >= user.bookedRooms[i].checkOut)
+                            alreadyBookedRooms.push(JSON.stringify(user.bookedRooms[i].roomId))
+                    }
+                }
+                let booked = false
+                for (room of alreadyBookedRooms)
+                    if (room === `"${req.params.roomId}"`) {
+                        booked = true
+                    }
+                    
+                if (booked) {
+                    console.log('got here')
+                    datesError = "The room is booked for these dates already"
+                    Room.findById(req.params.roomId)
+                    .then(room => {
+                        res.render('room', {
+                            title: room.title,
+                            room: room,
+                            datesError: datesError
+                        })
+                    })
+                    .catch(err => console.log(`Room wasn't found: ${err}`))
+                    
+                } else {
+                    User.findById(req.session.userInfo._id)
+                    .then(user => {
+                        if (user) {
+                            user.updateOne({$push: {bookedRooms: {roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate}}})
+                            .then(() => res.redirect(`/room/${req.params.roomId}`))
+                            .catch(err => console.log(`Booking wasn't saved: ${err}`))
+                        } else {
+                            res.redirect(`/dashboard`)
+                        }
+                    })
+                }
             }
         })
+
+
     }
 })
 
 
-router.get('/edit/:roomId', (req, res) => {
+router.get('/edit/:roomId', isAuthenticated, isAdmin, (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
         res.render('roomEdit', {
@@ -95,7 +133,7 @@ router.get('/edit/:roomId', (req, res) => {
 })
 
 
-router.put('/edit/:roomId', (req, res) => {
+router.put('/edit/:roomId', isAuthenticated, isAdmin, (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
         if (room) {
@@ -123,7 +161,7 @@ router.put('/edit/:roomId', (req, res) => {
 })
 
 
-router.delete('/delete/:roomId', (req, res) => {
+router.delete('/delete/:roomId', isAuthenticated, isAdmin, (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
         console.log(room)

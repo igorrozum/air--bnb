@@ -1,5 +1,9 @@
 @import './variables';
 
+@mixin flexAlign {
+    display: flex;
+    align-items: center;
+}
 
 .room-page {
     width: 90vw;
@@ -22,12 +26,18 @@
 
 .room-title {
     padding: 0 0 0 5rem;
+    #edit-delete-buts {
+        padding-top: 2rem;
+        @include flexAlign;
+        >a {
+            margin-right: 1rem;
+        }
+    }
 }
 
 .bookingForm {
-    display: flex;
+    @include flexAlign;
     margin: 2rem 0 1rem 0;
-
     >div {
         margin-right: 1rem;
     }

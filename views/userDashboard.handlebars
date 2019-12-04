@@ -1,3 +1,21 @@
-<div class="emptyBody middleText">
-    <h1>User Dashboard<br>Welcome {{ user.fname }} {{ user.lname }}</h1>
+<div id="dashboardBlock">
+
+    {{#each rooms}}
+        
+            <div id="roomBlock">
+                <div>
+                    <a href="/room/{{this._id}}"><img src="{{this.roomPic}}" alt=""></a>
+                    <a href="/room/{{this._id}}"><h4>{{this.title}}</h4></a>
+                </div>
+                <div>
+                    <a href="/room/edit/{{this._id}}" class="btn btn-outline-secondary">Edit</a>
+                    <form method="POST" action="/room/delete/{{this._id}}?_method=DELETE" id="js-delete-room-form">
+                        <input type="submit" value="Delete" class="btn btn-outline-danger js-delete-room-button" data-room-id={{this._id}}>
+                    </form>
+                </div>
+            </div>
+        </a>
+    {{else}}
+        You haven't booked any room yet.
+    {{/each}}
 </div>

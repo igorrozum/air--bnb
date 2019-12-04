@@ -6,7 +6,9 @@ const Room = require('../Models/Room')
 
 router.get("/", (req, res)=>{
     res.render("index", {
-        title : "Home | AirBnb"
+        title : "Home | AirBnb",
+        loginEmail: process.env.LOGINEMAIL,
+        loginPass: process.env.LOGINPASS
     });
 });
 
@@ -51,9 +53,11 @@ router.post("/", (req, res)=>{
                     for (let i = 0; i < user.bookedRooms.length; i++) {
                         if ((checkinDate >= user.bookedRooms[i].checkIn && checkinDate < user.bookedRooms[i].checkOut) || (checkoutDate > user.bookedRooms[i].checkIn && checkoutDate <= user.bookedRooms[i].checkOut))
                             roomIds.push(user.bookedRooms[i].roomId)
+                        else if (checkinDate <= user.bookedRooms[i].checkIn && checkoutDate >= user.bookedRooms[i].checkOut)
+                            roomIds.push(user.bookedRooms[i].roomId)
                     }
                 }
-                Room.find({'_id': {$nin: roomIds}})
+                Room.find({'_id': {$nin: roomIds}, 'city': { $regex : new RegExp(req.body.location, "i") }})
                 .then(rooms => {
                     res.render('listings', {
                         title: 'Room Listings',

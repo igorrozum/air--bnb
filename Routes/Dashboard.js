@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const isAuthenticated = require('../middleware/auth')
+const middleware = require('../middleware/auth')
+const isAuthenticated = middleware.isAuthenticated
+const isAdmin = middleware.isAdmin
 const Room = require('../Models/Room')
 const path = require('path')
 const fileupload = require("express-fileupload");
@@ -21,20 +23,44 @@ router.get('/', isAuthenticated, (req, res) => {
                 rooms: rooms
             })
         })
-    else
-        res.render('userDashboard', {
-            title: `${req.session.userInfo.fname}'s Dashboard`
+    else {
+        const rooms = []
+        for (booking of req.session.userInfo.bookedRooms)
+            rooms.push(booking.roomId)
+        
+        let bookings = []
+        Room.find({'_id': {$in: rooms}})
+        .then(rooms => {
+            // console.log(rooms)
+            if (rooms) {
+                // let updatedRooms = []
+                // for (booking of req.session.userInfo.bookedRooms) {
+                //     for (room of rooms) {
+                //         if (room._id == booking.roomId)
+                //             updatedRooms.push
+                //     }
+                // }
+                
+                res.render('userDashboard', {
+                    title: `${req.session.userInfo.fname}'s Dashboard`,
+                    rooms: rooms
+                    // bookings: req.session.userInfo.bookedRooms
+                })
+            }
         })
+        .catch(err => console.log(`Rooms weren't found: ${err}`))
+        
+    }
 })
 
 
-router.get('/addRoom', isAuthenticated, (req, res) => {
+router.get('/addRoom', isAuthenticated, isAdmin, (req, res) => {
     res.render('addRoom', {
         title: 'Add Room'
     })
 })
 
-router.post('/addRoom', isAuthenticated, (req, res) => {
+router.post('/addRoom', isAuthenticated, isAdmin, (req, res) => {
     const formData = {
         title: req.body.title,
         description: req.body.description,

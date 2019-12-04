@@ -144,9 +144,9 @@
                         <form role="form" method="POST" action="/signIn">
                             <div class="form-group" >
                             <small id="emailError" class="formError">{{ emailError }}</small>
-                            <input type="email" class="form-control" placeholder="Email address" name="email" autofocus/>
+                            <input type="email" class="form-control" placeholder="Email address" name="email" value="{{loginEmail}}" autofocus/>
                             <small id="passError" class="formError">{{ passError }}</small>
-                            <input type="password" class="form-control" placeholder="Your password" name="signInPass"/>
+                            <input type="password" class="form-control" placeholder="Your password" name="signInPass" value="{{loginPass}}"/>
                             <div class="modal-footer">
                             <button class="btn btn-primary btn-block">Sign In</button>
                             {{!-- <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign In"> --}}

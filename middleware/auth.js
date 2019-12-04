@@ -1,8 +1,9 @@
-function isAuthenticated(req, res, next) {
+exports.isAuthenticated = (req, res, next) => {
     if (req.session.userInfo) {
-        return next();
+        return next()
     } else {
         res.render('index', {
+            title: 'Home | AirBnb',
             signInShowValue: "show",
             signInblockValue: "block",
             bodyOpen: "modal-open",
@@ -12,4 +13,14 @@ function isAuthenticated(req, res, next) {
     }
 }
 
-module.exports = isAuthenticated
+exports.isAdmin = (req, res, next) => {
+    if (req.session.userInfo.admin == true) {
+        return next()
+    } else {
+        res.render('permissions', {
+            title: "Permissions Denied"
+        })
+    }
+}
+
+// module.exports = isAuthenticated

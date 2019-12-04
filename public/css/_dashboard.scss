@@ -1,3 +1,5 @@
+@import './variables';
+
 @mixin flexAlign {
     display: flex;
     align-items: center;
@@ -39,7 +41,10 @@
     width: 70%;
     min-height: calc(100vh - (180px + 8rem));
     margin: 3rem auto 5rem auto;
-
+    h2 {
+        text-align: center;
+        padding-bottom: 2rem;
+    }
     img {
         width: 4rem;
         height: 4rem;
@@ -47,7 +52,6 @@
         border-radius: 4px;
         margin: 0 2rem 1rem 0;
     }
-
     a:hover {
         text-decoration: none;
     }

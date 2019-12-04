@@ -14,21 +14,35 @@
         <h5>${{ room.price }} CAD/night</h5>
         {{/if}}
 
-        <form action="/room/{{ room._id }}" method="POST">
-            <div class="bookingForm">
-                <div>
-                    <label>Check-in</label>
-                    <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
-                    <small class="text-danger" >{{checkinError}}</small> 
+        {{#if itsAdmin}}
+            {{!-- {{#if itsAdmin}} --}}
+                <div id="edit-delete-buts">
+                    <a href="/room/edit/{{room._id}}" class="btn btn-outline-secondary">Edit</a>
+                    <form method="POST" action="/room/delete/{{room._id}}?_method=DELETE" id="js-delete-room-form">
+
+                        <input type="submit" value="Delete" class="btn btn-outline-danger js-delete-room-button" data-room-id={{room._id}}>
+                    </form>
                 </div>
-                <div>
-                    <label>Check-out</label>
-                    <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
-                    <small class="text-danger" >{{checkoutError}}</small>
+            {{!-- {{/if}} --}}
+        {{else}}
+            <form action="/room/{{ room._id }}" method="POST">
+                <div class="bookingForm">
+                    <div>
+                        <label>Check-in</label>
+                        <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
+                        <small class="text-danger" >{{checkinError}}</small> 
+                    </div>
+                    <div>
+                        <label>Check-out</label>
+                        <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
+                        <small class="text-danger" >{{checkoutError}}</small>
+                    </div>
                 </div>
-            </div>
-            <button class="btn book-btn">Book</button>
-        </form>
+                <button class="btn book-btn">Book</button>
+            </form>
+            <small class="text-danger" >{{datesError}}</small> 
+        {{/if}}
+        
         
     </div>
 </div>

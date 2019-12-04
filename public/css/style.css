@@ -479,6 +479,11 @@ label.checkbox-inline {
   margin: 3rem auto 5rem auto;
 }
 
+#dashboardBlock h2 {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
 #dashboardBlock img {
   width: 4rem;
   height: 4rem;
@@ -543,10 +548,27 @@ label.checkbox-inline {
   padding: 0 0 0 5rem;
 }
 
+.room-title #edit-delete-buts {
+  padding-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.room-title #edit-delete-buts > a {
+  margin-right: 1rem;
+}
+
 .bookingForm {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 2rem 0 1rem 0;
 }
 
