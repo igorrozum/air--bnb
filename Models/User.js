@@ -14,7 +14,9 @@ const userSchema = new Schema({
     dateOfBirth: {type: Date, required: true},
     bookedRooms: [{roomId: mongoose.Schema.Types.ObjectId,
                    checkIn: Date,
-                   checkOut: Date}]
+                   checkOut: Date
+                //    ref: "Rooms"
+                    }]
 })
 
 

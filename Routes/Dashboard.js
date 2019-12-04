@@ -4,6 +4,7 @@ const middleware = require('../middleware/auth')
 const isAuthenticated = middleware.isAuthenticated
 const isAdmin = middleware.isAdmin
 const Room = require('../Models/Room')
+const User = require('../Models/User')
 const path = require('path')
 const fileupload = require("express-fileupload");
 const methodOverride = require('method-override')
@@ -25,30 +26,48 @@ router.get('/', isAuthenticated, (req, res) => {
         })
     else {
         const rooms = []
-        for (booking of req.session.userInfo.bookedRooms)
-            rooms.push(booking.roomId)
+        // for (booking of req.session.userInfo.bookedRooms)
+        //     rooms.push(booking.roomId)
         
-        let bookings = []
-        Room.find({'_id': {$in: rooms}})
-        .then(rooms => {
+        User.findById(req.session.userInfo._id)
+        .then(user => {
+            // console.log(user)
+
+            for (booking of user.bookedRooms)
+                rooms.push(booking.roomId)
+            
             // console.log(rooms)
-            if (rooms) {
-                // let updatedRooms = []
-                // for (booking of req.session.userInfo.bookedRooms) {
-                //     for (room of rooms) {
-                //         if (room._id == booking.roomId)
-                //             updatedRooms.push
-                //     }
-                // }
-                
-                res.render('userDashboard', {
-                    title: `${req.session.userInfo.fname}'s Dashboard`,
-                    rooms: rooms
-                    // bookings: req.session.userInfo.bookedRooms
-                })
-            }
+
+            
+            Room.find({'_id': {$in: rooms}})
+            .then(rooms => {
+                if (rooms) {
+                    User.findById(req.session.userInfo._id)
+                    .then(user => {
+                        let bookings = []
+                        console.log(user.bookedRooms)
+                        for (booking of user.bookedRooms) {
+                            for (room of rooms) {
+                                if(JSON.stringify(room._id) == JSON.stringify(booking.roomId)) {
+                                    booking.checkIn = booking.checkIn.toString().substr(0,10)
+                                    booking.checkOut = booking.checkOut.toString().substr(0,10)
+                                    bookings.push({room: room, booking: booking})
+                                }
+                            }
+                        }
+                        res.render('userDashboard', {
+                            title: `${req.session.userInfo.fname}'s Dashboard`,
+                            rooms: rooms,
+                            bookings: bookings
+                        })
+                    })
+                    
+                }
+            })
+            .catch(err => console.log(`Rooms weren't found: ${err}`))
         })
-        .catch(err => console.log(`Rooms weren't found: ${err}`))
+        
+        
         
     }
 })

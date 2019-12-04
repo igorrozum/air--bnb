@@ -106,7 +106,8 @@ router.post('/:roomId', isAuthenticated, (req, res) => {
                     .then(user => {
                         if (user) {
                             user.updateOne({$push: {bookedRooms: {roomId: req.params.roomId, checkIn: checkinDate, checkOut: checkoutDate}}})
-                            .then(() => res.redirect(`/room/${req.params.roomId}`))
+                            // .then(() => res.redirect(`/room/${req.params.roomId}`))
+                            .then(() => res.redirect(`/dashboard`))
                             .catch(err => console.log(`Booking wasn't saved: ${err}`))
                         } else {
                             res.redirect(`/dashboard`)
