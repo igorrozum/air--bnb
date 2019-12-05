@@ -45,13 +45,10 @@ router.get('/', isAuthenticated, (req, res) => {
                     User.findById(req.session.userInfo._id)
                     .then(user => {
                         let bookings = []
-                        console.log(user.bookedRooms)
                         for (booking of user.bookedRooms) {
                             for (room of rooms) {
                                 if(JSON.stringify(room._id) == JSON.stringify(booking.roomId)) {
-                                    booking.checkIn = booking.checkIn.toString().substr(0,10)
-                                    booking.checkOut = booking.checkOut.toString().substr(0,10)
-                                    bookings.push({room: room, booking: booking})
+                                    bookings.push({room: room, booking: booking, checkIn: JSON.stringify(booking.checkIn).substr(1,10), checkOut: JSON.stringify(booking.checkOut).substr(1,10)})
                                 }
                             }
                         }
