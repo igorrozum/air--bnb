@@ -1,0 +1,36 @@
+<div class="room-page">
+    <div class="room-image">
+        <img src="{{room.roomPic}}" alt="">
+    </div>
+    <div class="room-title">
+        <h2>{{ room.title }}</h2>
+        {{#if room.description}}
+            <p>{{ room.description }}</p>
+        {{/if}}
+        {{#if room.address}}
+        <p class="aptLocation">{{ room.address }}, {{ room.city }}</p>
+        {{/if}}
+        {{#if room.price}}
+        <h5>${{ room.price }} CAD/night</h5>
+        {{/if}}
+
+        <form action="/room/{{ room._id }}" method="POST">
+            <div class="bookingForm">
+                <div>
+                    <label>Check-in</label>
+                    <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy" value="{{checkIn}}">
+                    <small class="text-danger" >{{checkinError}}</small> 
+                </div>
+                <div>
+                    <label>Check-out</label>
+                    <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy" value="{{checkOut}}">
+                    <small class="text-danger" >{{checkoutError}}</small>
+                </div>
+            </div>
+            <button class="btn book-btn">Book</button>
+        </form>
+        <small class="text-danger" >{{datesError}}</small> 
+        
+        
+    </div>
+</div>

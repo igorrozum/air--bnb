@@ -26,19 +26,11 @@ router.get('/', isAuthenticated, (req, res) => {
         })
     else {
         const rooms = []
-        // for (booking of req.session.userInfo.bookedRooms)
-        //     rooms.push(booking.roomId)
-        
         User.findById(req.session.userInfo._id)
         .then(user => {
-            // console.log(user)
-
             for (booking of user.bookedRooms)
                 rooms.push(booking.roomId)
-            
-            // console.log(rooms)
 
-            
             Room.find({'_id': {$in: rooms}})
             .then(rooms => {
                 if (rooms) {
@@ -63,11 +55,9 @@ router.get('/', isAuthenticated, (req, res) => {
             })
             .catch(err => console.log(`Rooms weren't found: ${err}`))
         })
-        
-        
-        
     }
 })
+
 
 
 router.get('/addRoom', isAuthenticated, isAdmin, (req, res) => {
@@ -120,6 +110,41 @@ router.post('/addRoom', isAuthenticated, isAdmin, (req, res) => {
         console.log(`${formData.title} has been saved`)
         
     })
+})
+
+
+
+router.get('/booking/edit/:roomId', isAuthenticated, (req, res) => {
+    User.findById(req.session.userInfo._id)
+    .then(user => {
+        for (booking of user.bookedRooms)
+            if (booking.roomId == req.params.roomId)
+                Room.findById(req.params.roomId)
+                .then(room => {
+                    res.render('roomBookingEdit', {
+                        title: `Edit ${room.title}`,
+                        room: room,
+                        checkIn: JSON.stringify(booking.checkIn).substr(1,10),
+                        checkOut: JSON.stringify(booking.checkOut).substr(1,10)
+                    })
+                })
+                .catch(err => console.log(`Room wasn't found: ${err}`))
+    })
+    .catch(err => console.log(`User wasn't found: ${err}`))
+})
+
+
+
+router.delete('/booking/delete/:bookingId', isAuthenticated, (req, res) => {
+    User.findById(req.session.userInfo._id)
+    .then(user => {
+        for (booking of user.bookedRooms)
+            if (booking._id == req.params.bookingId)
+                user.updateOne({$pull: {bookedRooms: {_id: booking._id}}})
+                .then(() => res.redirect('/dashboard'))
+                .catch(err => console.log(`Booking wasn't deleted: ${err}`)) 
+    })
+    .catch(err => console.log(`User wasn't found: ${err}`))
 })
 
 

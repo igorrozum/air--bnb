@@ -24,6 +24,7 @@
                         {{#if user}}
                             <a class="nav-item nav-link active" id="top-link" href="/dashboard">Dashboard</a>
                             <a class="nav-item nav-link disabled" id="top-link" href="/signIn/logOut">Log&nbsp;Out</a>
+                            <a class="nav-item nav-link active" id="top-link" href="/dashboard">{{user.fname}} {{user.lname}}</a>
                         {{else}}
                             <a class="nav-item nav-link active" id="top-link" href="/signUp"  data-toggle="modal" data-target="#popUpSignUp">Sign&nbsp;Up</a>
                             <a class="nav-item nav-link active" id="top-link" href="/signIn"  data-toggle="modal" data-target="#popUpSignIn">Sign&nbsp;In</a>
@@ -34,7 +35,7 @@
                             <button class="btn btn-outline-success search"><i class="fas fa-search"></i></button>
                         </form>
 
-                        {{#if user}}
+                        {{#if user.admin}}
                             <a  id="top-link" href="/dashboard/addRoom"><button class="btn btn-primary addRoom">Add&nbsp;Room</button></a>
                         {{/if}}
                     </div>
@@ -149,7 +150,6 @@
                             <input type="password" class="form-control" placeholder="Your password" name="signInPass" value="{{loginPass}}"/>
                             <div class="modal-footer">
                             <button class="btn btn-primary btn-block">Sign In</button>
-                            {{!-- <input type="button" class="btn btn-primary btn-block" id="SignUpBut" value="Sign In"> --}}
                             </div>
                         </form>
                     </div>

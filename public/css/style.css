@@ -481,45 +481,70 @@ label.checkbox-inline {
 
 #dashboardBlock h2 {
   text-align: center;
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
-#dashboardBlock img {
+#dashboardBlock #roomBlock {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 7fr 3fr 2fr;
+      grid-template-columns: 7fr 3fr 2fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#dashboardBlock #roomBlock > div:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#dashboardBlock #roomBlock div.dates-block {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+#dashboardBlock #roomBlock > div:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: end;
+}
+
+#dashboardBlock #roomBlock > div:last-child > a {
+  margin-right: 1rem;
+}
+
+#dashboardBlock #roomBlock h2 {
+  text-align: center;
+}
+
+#dashboardBlock #roomBlock h4 {
+  margin: 0 0 0 1rem;
+}
+
+#dashboardBlock #roomBlock img {
   width: 4rem;
   height: 4rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 4px;
-  margin: 0 2rem 1rem 0;
 }
 
-#dashboardBlock a:hover {
+#dashboardBlock #roomBlock a:hover {
   text-decoration: none;
 }
 
-#roomBlock {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-#roomBlock > div:first-of-type, #roomBlock > div:last-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#roomBlock > div:last-child > a {
-  margin-right: 1rem;
+#dashboardBlock #roomBlock p {
+  margin-bottom: 0;
 }
 
 .room-page {

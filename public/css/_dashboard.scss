@@ -41,33 +41,52 @@
     width: 70%;
     min-height: calc(100vh - (180px + 8rem));
     margin: 3rem auto 5rem auto;
+
     h2 {
         text-align: center;
-        padding-bottom: 2rem;
+        margin-bottom: 2rem;
     }
-    img {
-        width: 4rem;
-        height: 4rem;
-        object-fit: cover;
-        border-radius: 4px;
-        margin: 0 2rem 1rem 0;
+    #roomBlock {
+        display: grid;
+        grid-template-columns: 7fr 3fr 2fr;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    
+        >div:first-of-type {
+            @include flexAlign;
+        }
+        div.dates-block {
+            justify-self: center; 
+        }
+        >div:last-child {
+            @include flexAlign;
+            justify-self: end;
+            >a {
+                margin-right: 1rem;
+            }
+        }
+        h2 {
+            text-align: center;
+        }
+        h4 {
+            margin: 0 0 0 1rem;
+        }
+        img {
+            width: 4rem;
+            height: 4rem;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+        p {
+            margin-bottom: 0;
+        }
     }
-    a:hover {
-        text-decoration: none;
-    }
+    
 }
 
 
 
-#roomBlock {
-    @include flexAlign;
-    justify-content: space-between;
 
-    >div:first-of-type, >div:last-child {
-        @include flexAlign;
-    }
-
-    >div:last-child>a {
-        margin-right: 1rem;
-    }
-}
