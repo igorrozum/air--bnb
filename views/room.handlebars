@@ -23,22 +23,27 @@
                     </form>
                 </div>
         {{else}}
-            <form action="/room/{{ room._id }}" method="POST">
-                <div class="bookingForm">
-                    <div>
-                        <label>Check-in</label>
-                        <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
-                        <small class="text-danger" >{{checkinError}}</small> 
+            {{#if user}}
+                <form action="/room/{{ room._id }}" method="POST">
+                    <div class="bookingForm">
+                        <div>
+                            <label>Check-in</label>
+                            <input type="date" class="form-control" id="inputDate" name="checkinDate" placeholder="mm/dd/yyyy">
+                            <small class="text-danger" >{{checkinError}}</small> 
+                        </div>
+                        <div>
+                            <label>Check-out</label>
+                            <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
+                            <small class="text-danger" >{{checkoutError}}</small>
+                        </div>
                     </div>
-                    <div>
-                        <label>Check-out</label>
-                        <input type="date" class="form-control" id="inputDate" name="checkoutDate" placeholder="mm/dd/yyyy">
-                        <small class="text-danger" >{{checkoutError}}</small>
-                    </div>
-                </div>
-                <button class="btn book-btn">Book</button>
-            </form>
-            <small class="text-danger" >{{datesError}}</small> 
+                    <button class="btn book-btn">Book</button>
+                </form>
+                <small class="text-danger" >{{datesError}}</small> 
+            {{else}}
+                <br><h5>Please sign in to book the room</h5>
+            {{/if}}
+
         {{/if}}
         
         

@@ -484,6 +484,10 @@ label.checkbox-inline {
   margin: 0 auto 5rem auto;
 }
 
+#addRoomBlock img {
+  margin-bottom: 2rem;
+}
+
 .form-group.splited {
   display: -ms-grid;
   display: grid;

@@ -9,6 +9,7 @@ const fileupload = require("express-fileupload");
 const methodOverride = require('method-override')
 const path = require('path')
 const rimraf = require("rimraf")
+const fs = require('fs');
 
 
 router.use(fileupload())
@@ -134,7 +135,14 @@ router.put('/edit/:roomId', isAuthenticated, isAdmin, (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
         if (room) {
-            room.title = req.body.title
+            if (room.title != req.body.title) {
+                room.roomPic = `/uploads/rooms/${room.user}/${req.body.title}/roomPhoto.jpg`
+                fs.rename(`./public/uploads/rooms/${room.user}/${room.title}`, `./public/uploads/rooms/${room.user}/${req.body.title}`, function (err) {
+                    if (err) throw err;
+                    console.log('Renamed complete');
+                });
+                room.title = req.body.title
+            }
             room.description = req.body.description,
             room.address = req.body.address,
             room.country = req.body.country,
@@ -145,7 +153,6 @@ router.put('/edit/:roomId', isAuthenticated, isAdmin, (req, res) => {
 
             if (req.files) {
                 req.files.picture.name = `roomPhoto${path.parse(req.files.picture.name).ext}`
-                console.log("got here 2")
                 req.files.picture.mv(`./public/uploads/rooms/${room.user}/${room.title}/${req.files.picture.name}`)
             }
             room.save()
@@ -161,7 +168,6 @@ router.put('/edit/:roomId', isAuthenticated, isAdmin, (req, res) => {
 router.delete('/delete/:roomId', isAuthenticated, isAdmin, (req, res) => {
     Room.findById(req.params.roomId)
     .then(room => {
-        console.log(room)
         rimraf(`./public/uploads/rooms/${room.user}/${room.title}/`, function(err) {
             if (err)
                 console.log(`Error in deleting picture: ${err}`)
