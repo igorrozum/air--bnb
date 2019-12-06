@@ -55,7 +55,6 @@
 
 .card {
     width: 21rem;
-    /* min-height: 55vh; */
     border: 0;
     margin-bottom: 5rem;
 }
@@ -71,7 +70,6 @@
 .card-links:hover {
     text-decoration: none;
     border: 1px solid lightgray;
-    
     transition: 1s;
 }
 
@@ -123,19 +121,35 @@
 
 @media only screen and (max-width: 768px) {
     #roomListingsBlock {
-        width: 90vw;
-        margin: 0 auto;
         display: block;
     }
 
+    #roomListingsSection {
+        width: 90%;
+    }
+
     .card {
-        min-height: 55vh;
-        border: 0;
+        width: 100%;
     }
 
     .card-img-top {
-        height: 50vw;
-        object-fit: cover;
+        height: 60vw;
+    }
+
+    form {
+        margin-bottom: 1rem;
+    }
+
+    .listing-search {
+        width: 100%;
+        display: block;
+        input {
+            width: 100%;
+        }
+        button {
+            height: 2rem;
+            text-align: end;
+        }
     }
 
 }

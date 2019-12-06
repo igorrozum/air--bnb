@@ -26,6 +26,10 @@
     justify-self: end;
 }
 
+.nav-link.home {
+    display: none;
+}
+
 .fa-airbnb {
     color: $airbnbPinkColor;
     padding-left: 40px;
@@ -110,6 +114,9 @@
 
 
 @media only screen and (max-width: 992px) {
+    .nav-link.home {
+        display: block;
+    }
     .headerBlock {
         display: inline;
     }
@@ -146,6 +153,10 @@
         background-position: center;
     }
 
+    .nav-link.home {
+        display: block;
+    }
+
     .headerBlock {
         display: inline;
         
@@ -170,5 +181,9 @@
 
     .navbar-nav {
         padding-top: 30px;
+    }
+    .btn-outline-success.search {
+        border-color: $airbnbPinkColor;
+        margin-left: 0.7rem;
     }
 }

@@ -26,6 +26,10 @@
       justify-self: end;
 }
 
+.nav-link.home {
+  display: none;
+}
+
 .fa-airbnb {
   color: #ed6464;
   padding-left: 40px;
@@ -112,6 +116,9 @@
 }
 
 @media only screen and (max-width: 992px) {
+  .nav-link.home {
+    display: block;
+  }
   .headerBlock {
     display: inline;
   }
@@ -141,6 +148,9 @@
     background-size: cover;
     background-position: center;
   }
+  .nav-link.home {
+    display: block;
+  }
   .headerBlock {
     display: inline;
   }
@@ -159,6 +169,10 @@
   }
   .navbar-nav {
     padding-top: 30px;
+  }
+  .btn-outline-success.search {
+    border-color: #ed6464;
+    margin-left: 0.7rem;
   }
 }
 
@@ -356,7 +370,6 @@ label.checkbox-inline {
 
 .card {
   width: 21rem;
-  /* min-height: 55vh; */
   border: 0;
   margin-bottom: 5rem;
 }
@@ -425,18 +438,30 @@ label.checkbox-inline {
 
 @media only screen and (max-width: 768px) {
   #roomListingsBlock {
-    width: 90vw;
-    margin: 0 auto;
     display: block;
   }
+  #roomListingsSection {
+    width: 90%;
+  }
   .card {
-    min-height: 55vh;
-    border: 0;
+    width: 100%;
   }
   .card-img-top {
-    height: 50vw;
-    -o-object-fit: cover;
-       object-fit: cover;
+    height: 60vw;
+  }
+  form {
+    margin-bottom: 1rem;
+  }
+  .listing-search {
+    width: 100%;
+    display: block;
+  }
+  .listing-search input {
+    width: 100%;
+  }
+  .listing-search button {
+    height: 2rem;
+    text-align: end;
   }
 }
 
@@ -547,13 +572,38 @@ label.checkbox-inline {
   margin-bottom: 0;
 }
 
+@media only screen and (max-width: 768px) {
+  #dashboardBlock {
+    width: 90vw;
+    min-height: calc(100vh - (180px + 11rem));
+  }
+  #dashboardBlock #roomBlock {
+    display: block;
+  }
+  #dashboardBlock #roomBlock p {
+    margin: 1rem 0;
+  }
+  #dashboardBlock #roomBlock > div:last-child {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+  #addRoomBlock {
+    width: 90%;
+  }
+  #addRoomBlock img {
+    margin-bottom: 1rem;
+  }
+}
+
 .room-page {
   width: 90vw;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  height: calc(100vh - (180px + 8rem));
+  min-height: calc(100vh - (180px + 8rem));
   margin: 3rem auto 5rem auto;
 }
 
@@ -563,10 +613,6 @@ label.checkbox-inline {
   border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.room-image.edit {
-  margin-bottom: 3rem;
 }
 
 .room-title {
@@ -610,6 +656,36 @@ label.checkbox-inline {
   background: white;
   color: #ed6464;
   border: 1px solid #ed6464;
+}
+
+@media only screen and (max-width: 768px) {
+  .room-page {
+    width: 90vw;
+    display: block;
+  }
+  .room-title {
+    margin: 2rem 0;
+    padding: 0;
+  }
+  .room-title #edit-delete-buts {
+    padding-top: 2rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .room-title #edit-delete-buts > a {
+    margin-right: 1rem;
+  }
+  .bookingForm {
+    display: block;
+    margin: 2rem 0 1rem 0;
+  }
+  .bookingForm > div {
+    margin-right: 1rem;
+  }
 }
 
 footer {

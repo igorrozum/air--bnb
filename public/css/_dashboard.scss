@@ -89,4 +89,31 @@
 
 
 
+@media only screen and (max-width: 768px) {
+    #dashboardBlock {
+        width: 90vw;
+        min-height: calc(100vh - (180px + 11rem));
+        
+        #roomBlock {
+            display: block;
 
+            p {
+                margin: 1rem 0;
+            }
+            >div:last-child {
+                align-items: flex-start;
+                margin-top: 1.5rem;
+            }
+        }
+        
+    }
+
+    #addRoomBlock {
+        width: 90%;
+        
+        img {
+            margin-bottom: 1rem;
+        }
+    }
+
+}

@@ -11,7 +11,7 @@
                     <p>{{this.checkIn}}&nbsp;&nbsp;-&nbsp;&nbsp;{{this.checkOut}}</p>
                 </div>
                 <div>
-                    <a href="dashboard/booking/edit/{{this.room._id}}" class="btn btn-outline-secondary">Edit</a>
+                    {{!-- <a href="dashboard/booking/edit/{{this.room._id}}" class="btn btn-outline-secondary">Edit</a> --}}
                     <form method="POST" action="/dashboard/booking/delete/{{this.booking._id}}?_method=DELETE" id="js-delete-room-form">
                         <input type="submit" value="Delete" class="btn btn-outline-danger js-delete-room-button">
                     </form>

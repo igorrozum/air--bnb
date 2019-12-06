@@ -15,7 +15,6 @@
         {{/if}}
 
         {{#if itsAdmin}}
-            {{!-- {{#if itsAdmin}} --}}
                 <div id="edit-delete-buts">
                     <a href="/room/edit/{{room._id}}" class="btn btn-outline-secondary">Edit</a>
                     <form method="POST" action="/room/delete/{{room._id}}?_method=DELETE" id="js-delete-room-form">
@@ -23,7 +22,6 @@
                         <input type="submit" value="Delete" class="btn btn-outline-danger js-delete-room-button" data-room-id={{room._id}}>
                     </form>
                 </div>
-            {{!-- {{/if}} --}}
         {{else}}
             <form action="/room/{{ room._id }}" method="POST">
                 <div class="bookingForm">
