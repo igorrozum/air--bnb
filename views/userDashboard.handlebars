@@ -11,13 +11,21 @@
                     <p>{{this.checkIn}}&nbsp;&nbsp;-&nbsp;&nbsp;{{this.checkOut}}</p>
                 </div>
                 <div>
-                    {{!-- <a href="dashboard/booking/edit/{{this.room._id}}" class="btn btn-outline-secondary">Edit</a> --}}
-                    <form method="POST" action="/dashboard/booking/delete/{{this.booking._id}}?_method=DELETE" id="js-delete-room-form">
-                        <input type="submit" value="Delete" class="btn btn-outline-danger js-delete-room-button">
-                    </form>
+                    <a data-toggle="collapse" href="#{{this.booking._id}}" class="btn btn-outline-danger" role="button" aria-expanded="false" aria-controls="{{this.booking._id}}">Delete</a>
                 </div>
             </div>
-        </a>
+
+            <div class="collapse" id="{{this.booking._id}}">
+                <div class="collapse-delete">
+                    <p>Are you sure you want to delet it?</p>
+                    <div>
+                        <a data-toggle="collapse" href="#{{this.booking._id}}" role="button" class="btn btn-outline-secondary" aria-expanded="false" aria-controls="{{this.booking._id}}">No</a>
+                        <form method="POST" action="/dashboard/booking/delete/{{this.booking._id}}?_method=DELETE" id="js-delete-room-form">
+                        <input type="submit" value="Yes" class="btn btn-outline-danger js-delete-room-button">
+                        </form>
+                    </div>
+                </div>
+            </div>
     {{else}}
         You haven't booked any room yet.
     {{/each}}

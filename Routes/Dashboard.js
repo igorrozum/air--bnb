@@ -40,7 +40,10 @@ router.get('/', isAuthenticated, (req, res) => {
                         for (booking of user.bookedRooms) {
                             for (room of rooms) {
                                 if(JSON.stringify(room._id) == JSON.stringify(booking.roomId)) {
-                                    bookings.push({room: room, booking: booking, checkIn: JSON.stringify(booking.checkIn).substr(1,10), checkOut: JSON.stringify(booking.checkOut).substr(1,10)})
+                                    if (new Date(booking.checkOut).getTime() < new Date().getTime())
+                                        console.log('Booking is outdated')
+                                    else
+                                        bookings.push({room: room, booking: booking, checkIn: JSON.stringify(booking.checkIn).substr(1,10), checkOut: JSON.stringify(booking.checkOut).substr(1,10)})
                                 }
                             }
                         }
