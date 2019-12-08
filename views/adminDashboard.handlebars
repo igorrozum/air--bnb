@@ -1,4 +1,4 @@
-<div id="dashboardBlock">
+{{!-- <div id="dashboardBlock">
   <h2>Added Rooms</h2>
     {{#each rooms}}
         
@@ -16,6 +16,40 @@
                 </div>
             </div>
         </a>
+    {{else}}
+        You haven't added any room yet
+    {{/each}}
+</div> --}}
+
+
+<div id="dashboardBlock">
+  <h2>Added Rooms</h2>
+    {{#each rooms}}
+        
+            <div id="roomBlock">
+                <div>
+                    <a href="/room/{{this._id}}"><img src="{{this.roomPic}}" alt=""></a>
+                    <a href="/room/{{this._id}}"><h4>{{this.title}}</h4></a>
+                </div>
+                <div></div>
+
+                <div>
+                    <a href="/room/edit/{{this._id}}" class="btn btn-outline-secondary">Edit</a>
+                    <a data-toggle="collapse" href="#{{this._id}}" class="btn btn-outline-danger" role="button" aria-expanded="false" aria-controls="{{this._id}}">Delete</a>
+                </div>
+            </div>
+
+            <div class="collapse" id="{{this._id}}">
+                <div class="collapse-delete">
+                    <p>Are you sure you want to delet it?</p>
+                    <div>
+                        <a data-toggle="collapse" href="#{{this._id}}" role="button" class="btn btn-outline-secondary" aria-expanded="false" aria-controls="{{this._id}}">No</a>
+                        <form method="POST" action="/room/delete/{{this._id}}?_method=DELETE" id="js-delete-room-form">
+                            <input type="submit" value="Yes" class="btn btn-outline-danger js-delete-room-button" data-room-id={{this._id}}>
+                        </form>
+                    </div>
+                </div>
+            </div>
     {{else}}
         You haven't added any room yet
     {{/each}}

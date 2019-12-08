@@ -379,15 +379,11 @@ label.checkbox-inline {
   margin-bottom: 6rem;
   border: 1px solid white;
   border-radius: 10px;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .card-links:hover {
   text-decoration: none;
   border: 1px solid lightgray;
-  -webkit-transition: 1s;
-  transition: 1s;
 }
 
 .card img {
@@ -549,7 +545,7 @@ label.checkbox-inline {
 }
 
 #dashboardBlock #roomBlock > div:last-child > a {
-  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 #dashboardBlock #roomBlock h2 {
@@ -574,6 +570,36 @@ label.checkbox-inline {
 
 #dashboardBlock #roomBlock p {
   margin-bottom: 0;
+}
+
+#dashboardBlock .collapse-delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+#dashboardBlock .collapse-delete p {
+  margin-right: 1rem;
+}
+
+#dashboardBlock .collapse-delete div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#dashboardBlock .collapse-delete div a {
+  margin-right: 1rem;
 }
 
 @media only screen and (max-width: 768px) {
