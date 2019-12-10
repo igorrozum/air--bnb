@@ -5,7 +5,7 @@ const User = require('../Models/User')
 
 
 router.get("/", (req, res)=>{
-    Room.find()
+    Room.find().sort({_id:-1})
     .then(rooms => {
         res.render("listings", {
             title : "Room Listings",
@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
         datesError = "Room can be booked minimum for one day"
 
     if (checkinError || checkoutError || datesError) {
-        Room.find()
+        Room.find().sort({_id:-1})
         .then(rooms => {
             res.render("listings", {
                 title: 'Room Listings',
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
                             roomIds.push(user.bookedRooms[i].roomId)
                     }
                 }
-                Room.find({'_id': {$nin: roomIds}})
+                Room.find({'_id': {$nin: roomIds}}).sort({_id:-1})
                 .then(rooms => {
                     res.render('listings', {
                         title: 'Room Listings',
