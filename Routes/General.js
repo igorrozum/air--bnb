@@ -14,6 +14,7 @@ router.get("/", (req, res)=>{
 
 
 router.post("/", (req, res)=>{
+    let valid = true
     let checkinError = "";
     let checkoutError = "";
     let datesError = "";
@@ -21,20 +22,26 @@ router.post("/", (req, res)=>{
     const checkinDate = new Date(req.body.checkinDate);
     const checkoutDate = new Date(req.body.checkoutDate);
 
-    if (req.body.checkinDate == "" || checkinDate.toString() == "Invalid Date")
-        checkinError = "Enter correct Check-in date";
-    else if (checkinDate < curDate)
-        checkinError = "Date can't be lower than today";
-
-    if (req.body.checkoutDate == "" || checkoutDate.toString() == "Invalid Date")
-        checkoutError = "Enter correct Check-out date";
-    else if (checkoutDate < curDate)
-        checkoutError = "Date can't be lower than today";
-
-    if (checkinDate > checkoutDate)
-        datesError = "Check-out date can't be before check-in date"
+    if (req.body.checkinDate == "" || checkinDate.toString() == "Invalid Date") {
+        checkinError = "Enter correct Check-in date"
+        valid = false
+    } else if (checkinDate < curDate) {
+        checkinError = "Date can't be lower than today"
+        valid = false
+    }
         
-    if (checkinDate.toString() == checkoutDate.toString())
+    if (req.body.checkoutDate == "" || checkoutDate.toString() == "Invalid Date") {
+        checkoutError = "Enter correct Check-out date"
+        valid = false
+    } else if (checkoutDate < curDate) {
+        checkoutError = "Date can't be lower than today"
+        valid = false
+    }
+
+    if (valid && checkinDate > checkoutDate)
+        datesError = "Check-out date can't be before check-in date"
+
+    if (valid && checkinDate.toString() == checkoutDate.toString())
         datesError = "Room can be booked minimum for one day"
 
     if (checkinError || checkoutError || datesError) {
